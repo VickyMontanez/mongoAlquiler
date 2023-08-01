@@ -108,3 +108,452 @@ db.empleado.insertOne({
     "Telefono": 1234567890,
     "Cargo": "Empleado"
 });
+
+// -------------INSERT MANY--------------------
+
+use("db_campus_alquiler");
+db.sucursal.insertMany([
+    {
+        "_id": 2,
+        "ID_Sucursal": 3,
+        "Nombre": "Sucursal Principal",
+        "Direccion": "Av. Libertadores #245",
+        "Telefono": 311998877
+    },
+    {
+        "_id": 3,
+        "ID_Sucursal": 4,
+        "Nombre": "Sucursal Norte",
+        "Direccion": "Calle 72 #40-15",
+        "Telefono": 300112233
+    },
+    {
+        "_id": 4,
+        "ID_Sucursal": 5,
+        "Nombre": "Sucursal Centro",
+        "Direccion": "Plaza Mayor #10",
+        "Telefono": 311223344
+    },
+    {
+        "_id": 5,
+        "ID_Sucursal": 6,
+        "Nombre": "Sucursal Occidente",
+        "Direccion": "Carrera 80 #25-30",
+        "Telefono": 300445566
+    },
+    {
+        "_id": 6,
+        "ID_Sucursal": 7,
+        "Nombre": "Sucursal Sur",
+        "Direccion": "Calle 45 #12-50",
+        "Telefono": 322334455
+    }
+]);
+
+use("db_campus_alquiler");
+db.automovil.insertMany([
+    {
+        "_id": 2,
+        "ID_Automovil": 2,
+        "Marca": "Toyota",
+        "Modelo": "Corolla",
+        "Anio": 2022,
+        "Tipo": "Sedán",
+        "Capacidad": 5,
+        "Precio_Diario": 150000.00
+    },
+    {
+        "_id": 3,
+        "ID_Automovil": 3,
+        "Marca": "Ford",
+        "Modelo": "Explorer",
+        "Anio": 2021,
+        "Tipo": "SUV",
+        "Capacidad": 7,
+        "Precio_Diario": 180000.00
+    },
+    {
+        "_id": 4,
+        "ID_Automovil": 4,
+        "Marca": "Honda",
+        "Modelo": "Civic",
+        "Anio": 2023,
+        "Tipo": "Coupé",
+        "Capacidad": 4,
+        "Precio_Diario": 135000.00
+    },
+    {
+        "_id": 5,
+        "ID_Automovil": 5,
+        "Marca": "Chevrolet",
+        "Modelo": "Suburban",
+        "Anio": 2022,
+        "Tipo": "SUV",
+        "Capacidad": 8,
+        "Precio_Diario": 200000.00
+    },
+    {
+        "_id": 6,
+        "ID_Automovil": 6,
+        "Marca": "Nissan",
+        "Modelo": "Sentra",
+        "Anio": 2023,
+        "Tipo": "Sedán",
+        "Capacidad": 5,
+        "Precio_Diario": 155000.00
+    }
+]);
+
+use("db_campus_alquiler");
+db.sucursal_automovil.insertMany([
+    {
+        "_id": 2,
+        "ID_Sucursal": 2,
+        "ID_Automovil": 2,
+        "Cantidad_Disponible": 25
+    },
+    {
+        "_id": 3,
+        "ID_Sucursal": 1,
+        "ID_Automovil": 3,
+        "Cantidad_Disponible": 18
+    },
+    {
+        "_id": 4,
+        "ID_Sucursal": 3,
+        "ID_Automovil": 4,
+        "Cantidad_Disponible": 10
+    },
+    {
+        "_id": 5,
+        "ID_Sucursal": 2,
+        "ID_Automovil": 5,
+        "Cantidad_Disponible": 20
+    },
+    {
+        "_id": 6,
+        "ID_Sucursal": 1,
+        "ID_Automovil": 6,
+        "Cantidad_Disponible": 15
+    }
+]);
+
+use("db_campus_alquiler");
+db.alquiler.insertMany([
+    {
+        "_id": 2,
+        "ID_Alquiler": 2,
+        "ID_Cliente": 3,
+        "ID_Automovil_id": 4,
+        "Fecha_Inicio": "15/08/2023",
+        "Fecha_Fin": "20/08/2023",
+        "Costo_Total": 7500000.00,
+        "Estado": "Finalizado"
+    },
+    {
+        "_id": 3,
+        "ID_Alquiler": 5,
+        "ID_Cliente": 2,
+        "ID_Automovil_id": 8,
+        "Fecha_Inicio": "01/09/2023",
+        "Fecha_Fin": "10/09/2023",
+        "Costo_Total": 12000000.00,
+        "Estado": "Aprobado"
+    },
+    {
+        "_id": 4,
+        "ID_Alquiler": 7,
+        "ID_Cliente": 9,
+        "ID_Automovil_id": 6,
+        "Fecha_Inicio": "12/10/2023",
+        "Fecha_Fin": "20/10/2023",
+        "Costo_Total": 5000000.00,
+        "Estado": "Cancelado"
+    },
+    {
+        "_id": 5,
+        "ID_Alquiler": 12,
+        "ID_Cliente": 15,
+        "ID_Automovil_id": 14,
+        "Fecha_Inicio": "25/11/2023",
+        "Fecha_Fin": "01/12/2023",
+        "Costo_Total": 15000000.00,
+        "Estado": "Aprobado"
+    },
+    {
+        "_id": 6,
+        "ID_Alquiler": 20,
+        "ID_Cliente": 8,
+        "ID_Automovil_id": 9,
+        "Fecha_Inicio": "05/09/2023",
+        "Fecha_Fin": "15/09/2023",
+        "Costo_Total": 8500000.00,
+        "Estado": "Pendiente"
+    }
+
+]);
+
+use("db_campus_alquiler");
+db.reserva.insertMany([
+    {
+        "_id": 2,
+        "ID_Reserva": 2,
+        "ID_Cliente": 3,
+        "ID_Automovil_id": 4,
+        "Fecha_Reserva": "29/07/2023",
+        "Fecha_Inicio": "05/08/2023",
+        "Fecha_Fin": "15/08/2023",
+        "Estado": "Pendiente"
+    },
+    {
+        "_id": 3,
+        "ID_Reserva": 3,
+        "ID_Cliente": 2,
+        "ID_Automovil_id": 5,
+        "Fecha_Reserva": "01/08/2023",
+        "Fecha_Inicio": "10/08/2023",
+        "Fecha_Fin": "20/08/2023",
+        "Estado": "Aprobado"
+    },
+    {
+        "_id": 4,
+        "ID_Reserva": 4,
+        "ID_Cliente": 5,
+        "ID_Automovil_id": 2,
+        "Fecha_Reserva": "03/08/2023",
+        "Fecha_Inicio": "12/08/2023",
+        "Fecha_Fin": "25/08/2023",
+        "Estado": "Finalizado"
+    },
+    {
+        "_id": 5,
+        "ID_Reserva": 5,
+        "ID_Cliente": 4,
+        "ID_Automovil_id": 6,
+        "Fecha_Reserva": "04/08/2023",
+        "Fecha_Inicio": "20/08/2023",
+        "Fecha_Fin": "30/08/2023",
+        "Estado": "Cancelado"
+    },
+    {
+        "_id": 6,
+        "ID_Reserva": 6,
+        "ID_Cliente": 3,
+        "ID_Automovil_id": 1,
+        "Fecha_Reserva": "06/08/2023",
+        "Fecha_Inicio": "18/08/2023",
+        "Fecha_Fin": "28/08/2023",
+        "Estado": "Usando"
+    }
+]);
+
+use("db_campus_alquiler");
+db.cliente.insertMany([
+    {
+        "_id": 2,
+        "ID_Cliente": 2,
+        "Nombre": "María",
+        "Apellido": "González",
+        "DNI": "HDUINWO",
+        "Direccion": "Av. Libertadores #245",
+        "Telefono": 3119988772,
+        "Email": "mariagonzalez@example.com"
+    },
+    {
+        "_id": 3,
+        "ID_Cliente": 3,
+        "Nombre": "Carlos",
+        "Apellido": "Ramírez",
+        "DNI": "JUENSNW",
+        "Direccion": "Calle 72 #40-15",
+        "Telefono": 3001122333,
+        "Email": "carlosramirez@example.com"
+    },
+    {
+        "_id": 4,
+        "ID_Cliente": 4,
+        "Nombre": "Laura",
+        "Apellido": "López",
+        "DNI": "ODHNCWK",
+        "Direccion": "Plaza Mayor #10",
+        "Telefono": 3112233444,
+        "Email": "lauralopez@example.com"
+    },
+    {
+        "_id": 5,
+        "ID_Cliente": 5,
+        "Nombre": "José",
+        "Apellido": "Martínez",
+        "DNI": "KJNWIOD",
+        "Direccion": "Carrera 80 #25-30",
+        "Telefono": 3004455665,
+        "Email": "josemartinez@example.com"
+    },
+    {
+        "_id": 6,
+        "ID_Cliente": 6,
+        "Nombre": "Ana",
+        "Apellido": "Sánchez",
+        "DNI": "XJNCIWO",
+        "Direccion": "Calle 45 #12-50",
+        "Telefono": 3223344556,
+        "Email": "anasanchez@example.com"
+    }
+]);
+
+use("db_campus_alquiler");
+db.registro_devolucion.insertMany([
+    {
+        "_id": 2,
+        "ID_Registro": 2,
+        "ID_Alquiler": 2,
+        "ID_Empleado": 2,
+        "Fecha_Devolucion": "25/08/2023",
+        "Combustible_Devuelto": 45.2,
+        "Kilometraje_Devuelto": 176,
+        "Monto_Adicional": 24000000
+    },
+    {
+        "_id": 3,
+        "ID_Registro": 3,
+        "ID_Alquiler": 3,
+        "ID_Empleado": 1,
+        "Fecha_Devolucion": "18/08/2023",
+        "Combustible_Devuelto": 12.7,
+        "Kilometraje_Devuelto": 89,
+        "Monto_Adicional": 7600000
+    },
+    {
+        "_id": 4,
+        "ID_Registro": 4,
+        "ID_Alquiler": 4,
+        "ID_Empleado": 3,
+        "Fecha_Devolucion": "03/09/2023",
+        "Combustible_Devuelto": 55.8,
+        "Kilometraje_Devuelto": 210,
+        "Monto_Adicional": 18000000
+    },
+    {
+        "_id": 5,
+        "ID_Registro": 5,
+        "ID_Alquiler": 5,
+        "ID_Empleado": 2,
+        "Fecha_Devolucion": "20/08/2023",
+        "Combustible_Devuelto": 67.5,
+        "Kilometraje_Devuelto": 300,
+        "Monto_Adicional": 5000000
+    },
+    {
+        "_id": 6,
+        "ID_Registro": 6,
+        "ID_Alquiler": 6,
+        "ID_Empleado": 3,
+        "Fecha_Devolucion": "12/09/2023",
+        "Combustible_Devuelto": 22.1,
+        "Kilometraje_Devuelto": 140,
+        "Monto_Adicional": 32000000
+    }
+]);
+
+use("db_campus_alquiler");
+db.registro_entrega.insertMany([
+    {
+        "_id": 2,
+        "ID_Registro": 2,
+        "ID_Alquiler": 2,
+        "ID_Empleado": 2,
+        "Fecha_Entrega": "15/08/2023",
+        "Combustible_Entregado": 65.8,
+        "Kilometraje_Entregado": 412
+    },
+    {
+        "_id": 3,
+        "ID_Registro": 3,
+        "ID_Alquiler": 3,
+        "ID_Empleado": 3,
+        "Fecha_Entrega": "22/08/2023",
+        "Combustible_Entregado": 74.2,
+        "Kilometraje_Entregado": 600
+    },
+    {
+        "_id": 4,
+        "ID_Registro": 4,
+        "ID_Alquiler": 4,
+        "ID_Empleado": 2,
+        "Fecha_Entrega": "10/08/2023",
+        "Combustible_Entregado": 80.0,
+        "Kilometraje_Entregado": 480
+    },
+    {
+        "_id": 5,
+        "ID_Registro": 5,
+        "ID_Alquiler": 5,
+        "ID_Empleado": 1,
+        "Fecha_Entrega": "28/08/2023",
+        "Combustible_Entregado": 70.5,
+        "Kilometraje_Entregado": 550
+    },
+    {
+        "_id": 6,
+        "ID_Registro": 6,
+        "ID_Alquiler": 6,
+        "ID_Empleado": 3,
+        "Fecha_Entrega": "03/09/2023",
+        "Combustible_Entregado": 52.1,
+        "Kilometraje_Entregado": 360
+    }
+]);
+
+use("db_campus_alquiler");
+db.empleado.insertMany([
+    {
+        "_id": 2,
+        "ID_Empleado": 2,
+        "Nombre": "Ana",
+        "Apellido": "López",
+        "DNI": "cedula2",
+        "Direccion": "Av. Libertadores #245",
+        "Telefono": 9876543210,
+        "Cargo": "Asistente"
+    },
+    {
+        "_id": 3,
+        "ID_Empleado": 3,
+        "Nombre": "Carlos",
+        "Apellido": "Ramírez",
+        "DNI": "cedula3",
+        "Direccion": "Calle 72 #40-15",
+        "Telefono": 4567890123,
+        "Cargo": "Supervisor"
+    },
+    {
+        "_id": 4,
+        "ID_Empleado": 4,
+        "Nombre": "Laura",
+        "Apellido": "González",
+        "DNI": "cedula4",
+        "Direccion": "Plaza Mayor #10",
+        "Telefono": 9012345678,
+        "Cargo": "Gerente"
+    },
+    {
+        "_id": 5,
+        "ID_Empleado": 5,
+        "Nombre": "José",
+        "Apellido": "Martínez",
+        "DNI": "cedula5",
+        "Direccion": "Carrera 80 #25-30",
+        "Telefono": 6789012345,
+        "Cargo": "Empleado"
+    },
+    {
+        "_id": 6,
+        "ID_Empleado": 6,
+        "Nombre": "María",
+        "Apellido": "Sánchez",
+        "DNI": "cedula6",
+        "Direccion": "Calle 45 #12-50",
+        "Telefono": 3456789012,
+        "Cargo": "Asistente"
+    }
+]);
