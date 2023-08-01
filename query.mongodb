@@ -571,3 +571,34 @@ db.cliente.aggregate([
     }
 ]);
 
+// 4. Show all pending reservations with customer data and the reserved car.
+use("db_campus_alquiler");
+db.reserva.aggregate([
+    {
+      $lookup: {
+        from: "cliente",
+        localField: "ID_Cliente",
+        foreignField: "ID_Cliente",
+        as: "data_Cliente"
+      }
+    },
+    {
+        $project: {
+          "data_Cliente._id":0,
+          "data_Cliente.ID_Cliente":0,
+          "data_Cliente.DNI":0
+        }
+    },
+    {
+        $match: {
+            Estado: { $eq: "Pendiente" }
+        }
+    },
+    {
+      $unwind: "$data_Cliente"
+    }
+  ]);
+  
+  use("db_campus_alquiler");
+  db.reserva.find({});
+  
