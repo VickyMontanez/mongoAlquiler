@@ -523,7 +523,7 @@ db.alquiler.updateMany(
 
 // 1. Show all the clients register in the database
 use("db_campus_alquiler");
-db.cliente.find({});
+db.cliente.find({},{Nombre:1, Apellido:1, _id:0});
 
 // 2. Get all the vehicles available for rent
 use("db_campus_alquiler");
@@ -541,9 +541,20 @@ db.cliente.aggregate([
         }
     },
     {
-        $match: {
-            "data_Alquiler.Estado": { $eq: "Disponible" }
+        $project: {
+          "data_Alquiler._id":0,
+          "data_Alquiler.ID_Cliente":0,
+          "data_Alquiler.ID_Automovil_id":0,
+          "data_Alquiler.Costo_Total":0,
         }
+    },
+    {
+        $match: {
+            "data_Alquiler.Estado": { $eq: "Activo" }
+        }
+    },
+    {
+        $unwind: "$data_Alquiler"
     },
     {
         $group: {
@@ -559,3 +570,4 @@ db.cliente.aggregate([
         }
     }
 ]);
+
