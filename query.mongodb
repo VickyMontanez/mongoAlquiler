@@ -519,3 +519,9 @@ db.alquiler.updateMany(
     { Estado: "Aprobado" },
     { $set: { Estado: "Activo" } }
 );
+/* -------------------------------------------- QUERIES -------------------------------------- */
+
+// 1. Show all the clients register in the database
+use("db_campus_alquiler");
+db.cliente.find({});
+
