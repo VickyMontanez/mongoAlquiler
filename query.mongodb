@@ -1,1 +1,10 @@
 use("db_campus_alquiler");
+db.createCollection("sucursal");
+db.createCollection("sucursal_automovil");
+db.createCollection("automovil");
+db.createCollection("alquiler");
+db.createCollection("reserva");
+db.createCollection("cliente");
+db.createCollection("registro_devolucion");
+db.createCollection("registro_entrega");
+db.createCollection("empleado");
