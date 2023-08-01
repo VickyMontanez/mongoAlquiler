@@ -11,7 +11,6 @@ db.createCollection("empleado");
 
 use("db_campus_alquiler");
 db.sucursal.insertOne({
-    _id: 1,
     "ID_Sucursal": 1,
     "Nombre": "Zona Franca",
     "Direccion": "CLL 56 #13-36",
@@ -20,7 +19,6 @@ db.sucursal.insertOne({
 
 use("db_campus_alquiler");
 db.sucursal_automovil.insertOne({
-    _id: 1,
     "ID_Sucursal": 1,
     "ID_Automovil": 1,
     "Cantidad_Disponible": 32
@@ -28,7 +26,7 @@ db.sucursal_automovil.insertOne({
 
 use("db_campus_alquiler");
 db.automovil.insertOne({
-    _id: 1,
+
     "ID_Automovil": 1,
     "Marca": "Zona Franca",
     "Modelo": "3xxd",
@@ -40,7 +38,6 @@ db.automovil.insertOne({
 
 use("db_campus_alquiler");
 db.alquiler.insertOne({
-    _id: 1,
     "ID_Alquiler": 1,
     "ID_Cliente": 1,
     "ID_Automovil_id": 1,
@@ -52,7 +49,6 @@ db.alquiler.insertOne({
 
 use("db_campus_alquiler");
 db.reserva.insertOne({
-    _id: 1,
     "ID_Reserva": 1,
     "ID_Cliente": 1,
     "ID_Automovil_id": 1,
@@ -64,7 +60,6 @@ db.reserva.insertOne({
 
 use("db_campus_alquiler");
 db.cliente.insertOne({
-    _id: 1,
     "ID_Cliente": 1,
     "Nombre": "Ernesto",
     "Apellido": "Perez",
@@ -76,7 +71,6 @@ db.cliente.insertOne({
 
 use("db_campus_alquiler");
 db.registro_devolucion.insertOne({
-    _id: 1,
     "ID_Registro": 1,
     "ID_Alquiler": 1,
     "ID_Empleado": 1,
@@ -88,7 +82,6 @@ db.registro_devolucion.insertOne({
 
 use("db_campus_alquiler");
 db.registro_entrega.insertOne({
-    _id: 1,
     "ID_Registro": 1,
     "ID_Alquiler": 1,
     "ID_Empleado": 1,
@@ -99,7 +92,6 @@ db.registro_entrega.insertOne({
 
 use("db_campus_alquiler");
 db.empleado.insertOne({
-    _id: 1,
     "ID_Empleado": 1,
     "Nombre": "Miguel",
     "Apellido": "Castro",
@@ -114,36 +106,31 @@ db.empleado.insertOne({
 use("db_campus_alquiler");
 db.sucursal.insertMany([
     {
-        "_id": 2,
-        "ID_Sucursal": 3,
+        "ID_Sucursal": 2,
         "Nombre": "Sucursal Principal",
         "Direccion": "Av. Libertadores #245",
         "Telefono": 311998877
     },
     {
-        "_id": 3,
-        "ID_Sucursal": 4,
+        "ID_Sucursal": 3,
         "Nombre": "Sucursal Norte",
         "Direccion": "Calle 72 #40-15",
         "Telefono": 300112233
     },
     {
-        "_id": 4,
-        "ID_Sucursal": 5,
+        "ID_Sucursal": 4,
         "Nombre": "Sucursal Centro",
         "Direccion": "Plaza Mayor #10",
         "Telefono": 311223344
     },
     {
-        "_id": 5,
-        "ID_Sucursal": 6,
+        "ID_Sucursal": 5,
         "Nombre": "Sucursal Occidente",
         "Direccion": "Carrera 80 #25-30",
         "Telefono": 300445566
     },
     {
-        "_id": 6,
-        "ID_Sucursal": 7,
+        "ID_Sucursal": 6,
         "Nombre": "Sucursal Sur",
         "Direccion": "Calle 45 #12-50",
         "Telefono": 322334455
@@ -153,7 +140,6 @@ db.sucursal.insertMany([
 use("db_campus_alquiler");
 db.automovil.insertMany([
     {
-        "_id": 2,
         "ID_Automovil": 2,
         "Marca": "Toyota",
         "Modelo": "Corolla",
@@ -163,7 +149,6 @@ db.automovil.insertMany([
         "Precio_Diario": 150000.00
     },
     {
-        "_id": 3,
         "ID_Automovil": 3,
         "Marca": "Ford",
         "Modelo": "Explorer",
@@ -173,7 +158,6 @@ db.automovil.insertMany([
         "Precio_Diario": 180000.00
     },
     {
-        "_id": 4,
         "ID_Automovil": 4,
         "Marca": "Honda",
         "Modelo": "Civic",
@@ -183,7 +167,6 @@ db.automovil.insertMany([
         "Precio_Diario": 135000.00
     },
     {
-        "_id": 5,
         "ID_Automovil": 5,
         "Marca": "Chevrolet",
         "Modelo": "Suburban",
@@ -193,7 +176,6 @@ db.automovil.insertMany([
         "Precio_Diario": 200000.00
     },
     {
-        "_id": 6,
         "ID_Automovil": 6,
         "Marca": "Nissan",
         "Modelo": "Sentra",
@@ -241,18 +223,16 @@ db.sucursal_automovil.insertMany([
 use("db_campus_alquiler");
 db.alquiler.insertMany([
     {
-        "_id": 2,
         "ID_Alquiler": 2,
-        "ID_Cliente": 3,
+        "ID_Cliente": 5,
         "ID_Automovil_id": 4,
         "Fecha_Inicio": "15/08/2023",
         "Fecha_Fin": "20/08/2023",
         "Costo_Total": 7500000.00,
-        "Estado": "Finalizado"
+        "Estado": "DIsponible"
     },
     {
-        "_id": 3,
-        "ID_Alquiler": 5,
+        "ID_Alquiler": 3,
         "ID_Cliente": 2,
         "ID_Automovil_id": 8,
         "Fecha_Inicio": "01/09/2023",
@@ -261,19 +241,17 @@ db.alquiler.insertMany([
         "Estado": "Aprobado"
     },
     {
-        "_id": 4,
-        "ID_Alquiler": 7,
-        "ID_Cliente": 9,
+        "ID_Alquiler": 4,
+        "ID_Cliente": 3,
         "ID_Automovil_id": 6,
         "Fecha_Inicio": "12/10/2023",
         "Fecha_Fin": "20/10/2023",
         "Costo_Total": 5000000.00,
-        "Estado": "Cancelado"
+        "Estado": "Disponible"
     },
     {
-        "_id": 5,
-        "ID_Alquiler": 12,
-        "ID_Cliente": 15,
+        "ID_Alquiler": 5,
+        "ID_Cliente": 6,
         "ID_Automovil_id": 14,
         "Fecha_Inicio": "25/11/2023",
         "Fecha_Fin": "01/12/2023",
@@ -281,9 +259,8 @@ db.alquiler.insertMany([
         "Estado": "Aprobado"
     },
     {
-        "_id": 6,
-        "ID_Alquiler": 20,
-        "ID_Cliente": 8,
+        "ID_Alquiler": 6,
+        "ID_Cliente": 4,
         "ID_Automovil_id": 9,
         "Fecha_Inicio": "05/09/2023",
         "Fecha_Fin": "15/09/2023",
@@ -296,9 +273,8 @@ db.alquiler.insertMany([
 use("db_campus_alquiler");
 db.reserva.insertMany([
     {
-        "_id": 2,
         "ID_Reserva": 2,
-        "ID_Cliente": 3,
+        "ID_Cliente": 1,
         "ID_Automovil_id": 4,
         "Fecha_Reserva": "29/07/2023",
         "Fecha_Inicio": "05/08/2023",
@@ -306,7 +282,6 @@ db.reserva.insertMany([
         "Estado": "Pendiente"
     },
     {
-        "_id": 3,
         "ID_Reserva": 3,
         "ID_Cliente": 2,
         "ID_Automovil_id": 5,
@@ -316,7 +291,6 @@ db.reserva.insertMany([
         "Estado": "Aprobado"
     },
     {
-        "_id": 4,
         "ID_Reserva": 4,
         "ID_Cliente": 5,
         "ID_Automovil_id": 2,
@@ -326,7 +300,6 @@ db.reserva.insertMany([
         "Estado": "Finalizado"
     },
     {
-        "_id": 5,
         "ID_Reserva": 5,
         "ID_Cliente": 4,
         "ID_Automovil_id": 6,
@@ -336,7 +309,6 @@ db.reserva.insertMany([
         "Estado": "Cancelado"
     },
     {
-        "_id": 6,
         "ID_Reserva": 6,
         "ID_Cliente": 3,
         "ID_Automovil_id": 1,
@@ -350,7 +322,6 @@ db.reserva.insertMany([
 use("db_campus_alquiler");
 db.cliente.insertMany([
     {
-        "_id": 2,
         "ID_Cliente": 2,
         "Nombre": "María",
         "Apellido": "González",
@@ -360,7 +331,6 @@ db.cliente.insertMany([
         "Email": "mariagonzalez@example.com"
     },
     {
-        "_id": 3,
         "ID_Cliente": 3,
         "Nombre": "Carlos",
         "Apellido": "Ramírez",
@@ -370,7 +340,6 @@ db.cliente.insertMany([
         "Email": "carlosramirez@example.com"
     },
     {
-        "_id": 4,
         "ID_Cliente": 4,
         "Nombre": "Laura",
         "Apellido": "López",
@@ -380,7 +349,6 @@ db.cliente.insertMany([
         "Email": "lauralopez@example.com"
     },
     {
-        "_id": 5,
         "ID_Cliente": 5,
         "Nombre": "José",
         "Apellido": "Martínez",
@@ -390,7 +358,6 @@ db.cliente.insertMany([
         "Email": "josemartinez@example.com"
     },
     {
-        "_id": 6,
         "ID_Cliente": 6,
         "Nombre": "Ana",
         "Apellido": "Sánchez",
@@ -404,7 +371,6 @@ db.cliente.insertMany([
 use("db_campus_alquiler");
 db.registro_devolucion.insertMany([
     {
-        "_id": 2,
         "ID_Registro": 2,
         "ID_Alquiler": 2,
         "ID_Empleado": 2,
@@ -414,7 +380,6 @@ db.registro_devolucion.insertMany([
         "Monto_Adicional": 24000000
     },
     {
-        "_id": 3,
         "ID_Registro": 3,
         "ID_Alquiler": 3,
         "ID_Empleado": 1,
@@ -424,7 +389,6 @@ db.registro_devolucion.insertMany([
         "Monto_Adicional": 7600000
     },
     {
-        "_id": 4,
         "ID_Registro": 4,
         "ID_Alquiler": 4,
         "ID_Empleado": 3,
@@ -434,7 +398,6 @@ db.registro_devolucion.insertMany([
         "Monto_Adicional": 18000000
     },
     {
-        "_id": 5,
         "ID_Registro": 5,
         "ID_Alquiler": 5,
         "ID_Empleado": 2,
@@ -444,7 +407,6 @@ db.registro_devolucion.insertMany([
         "Monto_Adicional": 5000000
     },
     {
-        "_id": 6,
         "ID_Registro": 6,
         "ID_Alquiler": 6,
         "ID_Empleado": 3,
@@ -458,7 +420,6 @@ db.registro_devolucion.insertMany([
 use("db_campus_alquiler");
 db.registro_entrega.insertMany([
     {
-        "_id": 2,
         "ID_Registro": 2,
         "ID_Alquiler": 2,
         "ID_Empleado": 2,
@@ -467,7 +428,6 @@ db.registro_entrega.insertMany([
         "Kilometraje_Entregado": 412
     },
     {
-        "_id": 3,
         "ID_Registro": 3,
         "ID_Alquiler": 3,
         "ID_Empleado": 3,
@@ -476,7 +436,6 @@ db.registro_entrega.insertMany([
         "Kilometraje_Entregado": 600
     },
     {
-        "_id": 4,
         "ID_Registro": 4,
         "ID_Alquiler": 4,
         "ID_Empleado": 2,
@@ -485,7 +444,6 @@ db.registro_entrega.insertMany([
         "Kilometraje_Entregado": 480
     },
     {
-        "_id": 5,
         "ID_Registro": 5,
         "ID_Alquiler": 5,
         "ID_Empleado": 1,
@@ -494,7 +452,6 @@ db.registro_entrega.insertMany([
         "Kilometraje_Entregado": 550
     },
     {
-        "_id": 6,
         "ID_Registro": 6,
         "ID_Alquiler": 6,
         "ID_Empleado": 3,
@@ -507,7 +464,6 @@ db.registro_entrega.insertMany([
 use("db_campus_alquiler");
 db.empleado.insertMany([
     {
-        "_id": 2,
         "ID_Empleado": 2,
         "Nombre": "Ana",
         "Apellido": "López",
@@ -517,7 +473,6 @@ db.empleado.insertMany([
         "Cargo": "Asistente"
     },
     {
-        "_id": 3,
         "ID_Empleado": 3,
         "Nombre": "Carlos",
         "Apellido": "Ramírez",
@@ -527,7 +482,6 @@ db.empleado.insertMany([
         "Cargo": "Supervisor"
     },
     {
-        "_id": 4,
         "ID_Empleado": 4,
         "Nombre": "Laura",
         "Apellido": "González",
@@ -537,7 +491,6 @@ db.empleado.insertMany([
         "Cargo": "Gerente"
     },
     {
-        "_id": 5,
         "ID_Empleado": 5,
         "Nombre": "José",
         "Apellido": "Martínez",
@@ -547,7 +500,6 @@ db.empleado.insertMany([
         "Cargo": "Empleado"
     },
     {
-        "_id": 6,
         "ID_Empleado": 6,
         "Nombre": "María",
         "Apellido": "Sánchez",
@@ -557,3 +509,13 @@ db.empleado.insertMany([
         "Cargo": "Asistente"
     }
 ]);
+
+
+/* ---------------------------- METHODS --------------------- */
+
+/* UPDATE */
+use("db_campus_alquiler");
+db.alquiler.updateMany(
+    { Estado: "Aprobado" },
+    { $set: { Estado: "Activo" } }
+);
