@@ -8,3 +8,103 @@ db.createCollection("cliente");
 db.createCollection("registro_devolucion");
 db.createCollection("registro_entrega");
 db.createCollection("empleado");
+
+use("db_campus_alquiler");
+db.sucursal.insertOne({
+    _id: 1,
+    "ID_Sucursal": 1,
+    "Nombre": "Zona Franca",
+    "Direccion": "CLL 56 #13-36",
+    "Telefono": 322122112
+});
+
+use("db_campus_alquiler");
+db.sucursal_automovil.insertOne({
+    _id: 1,
+    "ID_Sucursal": 1,
+    "ID_Automovil": 1,
+    "Cantidad_Disponible": 32
+});
+
+use("db_campus_alquiler");
+db.automovil.insertOne({
+    _id: 1,
+    "ID_Automovil": 1,
+    "Marca": "Zona Franca",
+    "Modelo": "3xxd",
+    "Anio": 2023,
+    "Tipo": "Familiar",
+    "Capacidad": 6,
+    "Precio_Diario": 32243455543
+});
+
+use("db_campus_alquiler");
+db.alquiler.insertOne({
+    _id: 1,
+    "ID_Alquiler": 1,
+    "ID_Cliente": 1,
+    "ID_Automovil_id": 1,
+    "Fecha_Inicio": "31/07/2023",
+    "Fecha_Fin": "31/08/2023",
+    "Costo_Total": 19997273665.654,
+    "Estado": "Pendiente"
+});
+
+use("db_campus_alquiler");
+db.reserva.insertOne({
+    _id: 1,
+    "ID_Reserva": 1,
+    "ID_Cliente": 1,
+    "ID_Automovil_id": 1,
+    "Fecha_Reserva": "28/07/2023",
+    "Fecha_Inicio": "31/07/2023",
+    "Fecha_Fin": "31/08/2023",
+    "Estado": "Usando"
+});
+
+use("db_campus_alquiler");
+db.cliente.insertOne({
+    _id: 1,
+    "ID_Cliente": 1,
+    "Nombre": "Ernesto",
+    "Apellido": "Perez",
+    "DNI": "AHNDBJH",
+    "Direccion": "CLL 56 #13-36",
+    "Telefono": 3224543241,
+    "Email": "ernezpe@gmail.com"
+});
+
+use("db_campus_alquiler");
+db.registro_devolucion.insertOne({
+    _id: 1,
+    "ID_Registro": 1,
+    "ID_Alquiler": 1,
+    "ID_Empleado": 1,
+    "Fecha_Devolucion": "31/08/2023",
+    "Combustible_Devuelto": 34.3,
+    "Kilometraje_Devuelto": 124,
+    "Monto_Adicional": 38908776
+});
+
+use("db_campus_alquiler");
+db.registro_entrega.insertOne({
+    _id: 1,
+    "ID_Registro": 1,
+    "ID_Alquiler": 1,
+    "ID_Empleado": 1,
+    "Fecha_Entrega": "31/0/2023",
+    "Combustible_Entregado": 89.3,
+    "Kilometraje_Entregado": 524,
+});
+
+use("db_campus_alquiler");
+db.empleado.insertOne({
+    _id: 1,
+    "ID_Empleado": 1,
+    "Nombre": "Miguel",
+    "Apellido": "Castro",
+    "DNI": "cedula",
+    "Direccion": "cll 34 #45-10",
+    "Telefono": 1234567890,
+    "Cargo": "Empleado"
+});
