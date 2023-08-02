@@ -646,3 +646,7 @@ db.sucursal.aggregate([
         }
     }
 ]);
+
+//8. Get the total cost of a specific "alquiler".
+use("db_campus_alquiler");
+db.alquiler.find({ID_Alquiler: 3},{_id:0, ID_Alquiler:1, Costo_Total:1})
