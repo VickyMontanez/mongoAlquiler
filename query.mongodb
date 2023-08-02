@@ -654,3 +654,7 @@ db.alquiler.find({ID_Alquiler: 3},{_id:0, ID_Alquiler:1, Costo_Total:1});
 //9.List the clients with the specific "DNI".
 use("db_campus_alquiler");
 db.cliente.find({DNI: "M1234567N"},{_id:0, ID_Cliente:1, Nombre:1, Apellido:1, DNI:1, Telefono:1});
+
+//10. Show all cars with a capacity greater than 5 people.
+use("db_campus_alquiler");
+db.automovil.find({ Capacidad: { $gte: 5 } },{_id:0,});
