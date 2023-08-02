@@ -63,7 +63,7 @@ db.cliente.insertOne({
     "ID_Cliente": 1,
     "Nombre": "Ernesto",
     "Apellido": "Perez",
-    "DNI": "AHNDBJH",
+    "DNI": "Y1234567Z",
     "Direccion": "CLL 56 #13-36",
     "Telefono": 3224543241,
     "Email": "ernezpe@gmail.com"
@@ -320,7 +320,7 @@ db.cliente.insertMany([
         "ID_Cliente": 2,
         "Nombre": "María",
         "Apellido": "González",
-        "DNI": "HDUINWO",
+        "DNI": "H1234567I",
         "Direccion": "Av. Libertadores #245",
         "Telefono": 3119988772,
         "Email": "mariagonzalez@example.com"
@@ -329,7 +329,7 @@ db.cliente.insertMany([
         "ID_Cliente": 3,
         "Nombre": "Carlos",
         "Apellido": "Ramírez",
-        "DNI": "JUENSNW",
+        "DNI": "J1234567K",
         "Direccion": "Calle 72 #40-15",
         "Telefono": 3001122333,
         "Email": "carlosramirez@example.com"
@@ -338,7 +338,7 @@ db.cliente.insertMany([
         "ID_Cliente": 4,
         "Nombre": "Laura",
         "Apellido": "López",
-        "DNI": "ODHNCWK",
+        "DNI": "M1234567N",
         "Direccion": "Plaza Mayor #10",
         "Telefono": 3112233444,
         "Email": "lauralopez@example.com"
@@ -347,7 +347,7 @@ db.cliente.insertMany([
         "ID_Cliente": 5,
         "Nombre": "José",
         "Apellido": "Martínez",
-        "DNI": "KJNWIOD",
+        "DNI": "O1234567P",
         "Direccion": "Carrera 80 #25-30",
         "Telefono": 3004455665,
         "Email": "josemartinez@example.com"
@@ -356,7 +356,7 @@ db.cliente.insertMany([
         "ID_Cliente": 6,
         "Nombre": "Ana",
         "Apellido": "Sánchez",
-        "DNI": "XJNCIWO",
+        "DNI": "Q1234567R",
         "Direccion": "Calle 45 #12-50",
         "Telefono": 3223344556,
         "Email": "anasanchez@example.com"
@@ -649,4 +649,8 @@ db.sucursal.aggregate([
 
 //8. Get the total cost of a specific "alquiler".
 use("db_campus_alquiler");
-db.alquiler.find({ID_Alquiler: 3},{_id:0, ID_Alquiler:1, Costo_Total:1})
+db.alquiler.find({ID_Alquiler: 3},{_id:0, ID_Alquiler:1, Costo_Total:1});
+
+//9.List the clients with the specific "DNI".
+use("db_campus_alquiler");
+db.cliente.find({DNI: "M1234567N"},{_id:0, ID_Cliente:1, Nombre:1, Apellido:1, DNI:1, Telefono:1});
