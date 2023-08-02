@@ -98,7 +98,7 @@ db.empleado.insertOne({
     "DNI": "cedula",
     "Direccion": "cll 34 #45-10",
     "Telefono": 1234567890,
-    "Cargo": "Empleado"
+    "Cargo": "Vendedor"
 });
 
 // -------------INSERT MANY--------------------
@@ -189,31 +189,26 @@ db.automovil.insertMany([
 use("db_campus_alquiler");
 db.sucursal_automovil.insertMany([
     {
-        "_id": 2,
         "ID_Sucursal": 2,
         "ID_Automovil": 2,
         "Cantidad_Disponible": 25
     },
     {
-        "_id": 3,
         "ID_Sucursal": 1,
         "ID_Automovil": 3,
         "Cantidad_Disponible": 18
     },
     {
-        "_id": 4,
         "ID_Sucursal": 3,
         "ID_Automovil": 4,
         "Cantidad_Disponible": 10
     },
     {
-        "_id": 5,
         "ID_Sucursal": 2,
         "ID_Automovil": 5,
         "Cantidad_Disponible": 20
     },
     {
-        "_id": 6,
         "ID_Sucursal": 1,
         "ID_Automovil": 6,
         "Cantidad_Disponible": 15
@@ -229,7 +224,7 @@ db.alquiler.insertMany([
         "Fecha_Inicio": "15/08/2023",
         "Fecha_Fin": "20/08/2023",
         "Costo_Total": 7500000.00,
-        "Estado": "DIsponible"
+        "Estado": "Disponible"
     },
     {
         "ID_Alquiler": 3,
@@ -497,7 +492,7 @@ db.empleado.insertMany([
         "DNI": "cedula5",
         "Direccion": "Carrera 80 #25-30",
         "Telefono": 6789012345,
-        "Cargo": "Empleado"
+        "Cargo": "Vendedor"
     },
     {
         "ID_Empleado": 6,
@@ -602,3 +597,22 @@ db.reserva.aggregate([
 //5. Get the rental details with the specific ID_Alquiler.
 use("db_campus_alquiler");
 db.alquiler.find({ID_Alquiler: 6});
+
+//6. List the employees with the position of "Vendedor"
+use("db_campus_alquiler");
+db.empleado.aggregate([
+    {
+        $match:{
+            Cargo: {$eq: "Vendedor"}
+        }
+    },
+    {
+        $project: {
+          "_id": 0,
+          "ID_Empleado":1,
+          "Nombre":1,
+          "Apellido":1,
+          "Cargo":1
+        }
+    }
+]);
