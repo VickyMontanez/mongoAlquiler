@@ -667,3 +667,7 @@ db.alquiler.find({Fecha_Inicio:'2023-07-05'},{_id:0});
 //12. List pending reservations made by a client specific
 use("db_campus_alquiler");
 db.reserva.find({ID_Cliente: 1, Estado: "Pendiente"});
+
+//13. Show the employees with title of "Gerente" o "Asistente". 
+use("db_campus_alquiler");
+db.empleado.find({ Cargo:{ $in: ["Gerente", "Asistente"]}});
