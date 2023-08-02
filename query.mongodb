@@ -599,6 +599,6 @@ db.reserva.aggregate([
     }
   ]);
   
-  use("db_campus_alquiler");
-  db.reserva.find({});
-  
+//5. Get the rental details with the specific ID_Alquiler.
+use("db_campus_alquiler");
+db.alquiler.find({ID_Alquiler: 6});
