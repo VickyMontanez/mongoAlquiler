@@ -659,6 +659,10 @@ db.cliente.find({DNI: "M1234567N"},{_id:0, ID_Cliente:1, Nombre:1, Apellido:1, D
 use("db_campus_alquiler");
 db.automovil.find({ Capacidad: { $gte: 5 } },{_id:0,});
 
-//11. Get the details of the rental that has a start date of '2023-07-05'.
+//11. Get the details of the rental that has a start date of '2023-07-05'
 use("db_campus_alquiler");
 db.alquiler.find({Fecha_Inicio:'2023-07-05'},{_id:0});
+
+//12. List pending reservations made by a client specific
+use("db_campus_alquiler");
+db.reserva.find({ID_Cliente: 1, Estado: "Pendiente"});
