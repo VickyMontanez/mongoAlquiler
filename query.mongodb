@@ -644,7 +644,8 @@ db.sucursal.aggregate([
           "Nombre": 1,
           "Total_Automoviles": "$total_Automoviles"
         }
-    }
+    },
+    { $sort: { ID_Sucursal: 1 } }
 ]);
 
 //8. Get the total cost of a specific "alquiler".
