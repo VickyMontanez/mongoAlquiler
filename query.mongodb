@@ -671,3 +671,32 @@ db.reserva.find({ID_Cliente: 1, Estado: "Pendiente"});
 //13. Show the employees with title of "Gerente" o "Asistente". 
 use("db_campus_alquiler");
 db.empleado.find({ Cargo:{ $in: ["Gerente", "Asistente"]}});
+
+//14. Get the data of the clients who made at least one rent (alquiler).
+use("db_campus_alquiler");
+db.cliente.aggregate([
+    {
+        $lookup: {
+            from: "alquiler",
+            localField: "ID_Cliente",
+            foreignField: "ID_Cliente",
+            as: "data_Alquiler"
+        }
+    },
+    {
+        $project: {
+            "_id" : 0,
+            "Direccion" : 0,
+            "Telefono":0,
+            "Email":0,
+            "data_Alquiler._id":0,
+            "data_Alquiler.ID_Cliente":0,
+            "data_Alquiler.Costo_Total":0,
+        }
+    },
+    {
+        $match: {
+            data_Alquiler: { $ne: [] }
+        }
+    }
+]);
