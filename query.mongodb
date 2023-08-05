@@ -700,3 +700,19 @@ db.cliente.aggregate([
         }
     }
 ]);
+
+//15. List all cars sorted by brand and model.
+use("db_campus_alquiler");
+db.automovil.aggregate([
+    {
+        $project:{
+            "_id": 0,
+        }
+    },
+    {
+        $sort:{
+            "Marca": 1,
+            "Modelo": 1
+        }
+    }
+])
