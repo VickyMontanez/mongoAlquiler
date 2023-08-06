@@ -776,3 +776,29 @@ db.sucursal.aggregate([
 //17. Get the total number of rentals recorded in the database.
 use("db_campus_alquiler");
 db.alquiler.countDocuments();
+
+//18. Show all the cars with a capacity of 5 people that are currently available.
+use("db_campus_alquiler");
+db.automovil.aggregate([
+    {
+        $lookup: {
+          from: "alquiler",
+          localField: "ID_Automovil",
+          foreignField: "ID_Automovil_id",
+          as: "data_Alquiler"
+        }
+    },
+    {
+        $match: {
+          "data_Alquiler.Estado":"Disponible",
+          "Capacidad":{$gte: 5}
+        }
+    },
+    {
+        $project: {
+          "_id":0,
+          "data_Alquiler._id": 0,
+          "data_Alquiler.ID_Automovil_id": 0
+        }
+    }
+]);
