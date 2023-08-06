@@ -802,3 +802,18 @@ db.automovil.aggregate([
         }
     }
 ]);
+
+//19.List the rentals with a start date between '2023-07-05' and '2023-07-10'.
+use("db_campus_alquiler");
+db.alquiler.aggregate([
+    {
+        $match: {
+            Fecha_Inicio: {
+                $gte: "2023-07-05",
+                $lte: "2023-07-10"
+            }
+        }
+    },
+    { $project: {"_id":0} },
+    { $sort: {Fecha_Inicio: 1}}
+]);
