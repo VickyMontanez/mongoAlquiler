@@ -772,3 +772,7 @@ db.sucursal.aggregate([
         }
     }
 ]);
+
+//17. Get the total number of rentals recorded in the database.
+use("db_campus_alquiler");
+db.alquiler.countDocuments();
