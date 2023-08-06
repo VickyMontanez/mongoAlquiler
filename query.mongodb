@@ -212,7 +212,37 @@ db.sucursal_automovil.insertMany([
         "ID_Sucursal": 1,
         "ID_Automovil": 6,
         "Cantidad_Disponible": 15
-    }
+    },
+    {
+        "ID_Sucursal": 4,
+        "ID_Automovil": 6,
+        "Cantidad_Disponible": 22
+    },
+    {
+        "ID_Sucursal": 4,
+        "ID_Automovil": 5,
+        "Cantidad_Disponible": 12
+    },
+    {
+        "ID_Sucursal": 5,
+        "ID_Automovil": 1,
+        "Cantidad_Disponible": 32
+    },
+    {
+        "ID_Sucursal": 6,
+        "ID_Automovil": 2,
+        "Cantidad_Disponible": 15
+    },
+    {
+        "ID_Sucursal": 5,
+        "ID_Automovil": 4,
+        "Cantidad_Disponible": 32
+    },
+    {
+        "ID_Sucursal": 6,
+        "ID_Automovil": 5,
+        "Cantidad_Disponible": 11
+    },
 ]);
 
 use("db_campus_alquiler");
@@ -715,4 +745,30 @@ db.automovil.aggregate([
             "Modelo": 1
         }
     }
-])
+]);
+
+//16. Show the total number of cars at each branch along with their address.
+use("db_campus_alquiler");
+db.sucursal.aggregate([
+    {
+        $lookup: {
+          from: "sucursal_automovil",
+          localField: "ID_Sucursal",
+          foreignField: "ID_Sucursal",
+          as: "data_Automoviles"
+        }
+    },
+    {
+        $addFields: {
+          "total_Automoviles": { $sum: "$data_Automoviles.Cantidad_Disponible" }
+        }
+    },
+    {
+        $project: {
+          "_id": 0,
+          "Telefono": 0,
+          "data_Automoviles._id": 0,
+          "data_Automoviles.ID_Sucursal": 0,
+        }
+    }
+]);
