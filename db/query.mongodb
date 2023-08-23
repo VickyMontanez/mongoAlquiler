@@ -1,6 +1,77 @@
 use("db_campus_alquiler");
-db.createCollection("sucursal");
-db.createCollection("sucursal_automovil");
+db.createCollection("sucursal", {
+    capped: true,
+    size: 1900,
+    max: 5,
+    validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        additionalProperties: false,
+        required: [ "ID_Sucursal", "Nombre", "Direccion", "Telefono"],
+        properties: {
+            _id:{
+                bsonType: 'objectId',
+            },
+            ID_Sucursal: {
+                bsonType: "int",
+                minimum: 0,
+                maximum: 20,
+                description: "El campo branchID debe ser un número y estar comprendido entre 0 y 20",
+            },
+            Nombre: {
+                bsonType: "string",
+                pattern: "^[A-Za-z\\s]+$",
+                description: "Debe informar el campo name y este debe ser un string",
+            },
+            Direccion: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                description: "Debe informar el campo address y este debe ser un string",
+            },
+            Telefono: {
+                bsonType: "string",
+                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                description: "Debe informar el campo phoneNumber y este debe ser un string",
+            },
+        },
+    },
+    },
+});
+
+db.createCollection("sucursal_automovil", {
+    capped: true,
+    size: 1900,
+    max: 5,
+    validator: {
+    $jsonSchema: {
+        bsonType: "object",
+        additionalProperties: false,
+        required: ["ID_Sucursal_id", "ID_Automovil_id", "Cantidad_Disponible"],
+        properties: {
+            _id:{
+                bsonType: 'objectId',
+            },
+            ID_Sucursal_id: {
+                bsonType: "int",
+                minimum: 0,
+                maximum: 20,
+                description: "El campo ID_Sucursal_id debe ser un número y estar comprendido entre 0 y 20"
+            },
+            ID_Automovil_id: {
+                bsonType: "int",
+                minimum: 0,
+                maximum: 20,
+                description: "El campo ID_Automovil_id debe ser un número y estar comprendido entre 0 y 20"
+            },
+            Cantidad_Disponible: {
+                bsonType: "int",
+                minimum: 0,
+                description: "El campo Cantidad_Disponible debe ser un número"
+            }
+        },
+    },
+    },
+});
 db.createCollection("automovil");
 db.createCollection("alquiler");
 db.createCollection("reserva");
