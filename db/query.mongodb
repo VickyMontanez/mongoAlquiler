@@ -1,608 +1,858 @@
 use("db_campus_alquiler");
 db.createCollection("sucursal", {
     capped: true,
-    size: 1900,
-    max: 5,
+    size: 1300,
+    max: 10,
     validator: {
-    $jsonSchema: {
-        bsonType: "object",
-        additionalProperties: false,
-        required: [ "ID_Sucursal", "Nombre", "Direccion", "Telefono"],
-        properties: {
-            _id:{
-                bsonType: 'objectId',
-            },
-            ID_Sucursal: {
-                bsonType: "int",
-                minimum: 0,
-                maximum: 20,
-                description: "El campo branchID debe ser un número y estar comprendido entre 0 y 20",
-            },
-            Nombre: {
-                bsonType: "string",
-                pattern: "^[A-Za-z\\s]+$",
-                description: "Debe informar el campo name y este debe ser un string",
-            },
-            Direccion: {
-                bsonType: "string",
-                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                description: "Debe informar el campo address y este debe ser un string",
-            },
-            Telefono: {
-                bsonType: "string",
-                pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
-                description: "Debe informar el campo phoneNumber y este debe ser un string",
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_sucursal", "nombre", "direccion", "telefono"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_sucursal: {
+                    bsonType: "int",
+                    description: "The id_sucursal field must be a number",
+                },
+                nombre: {
+                    bsonType: "string",
+                    description: "You must provide the nombre field, and it should be a string",
+                },
+                direccion: {
+                    bsonType: "string",
+                    description: "You must provide the direccion field, and it should be a string",
+                },
+                telefono: {
+                    bsonType: "string",
+                    description: "You must provide the telefono field, and it should be a string",
+                },
             },
         },
     },
-    },
 });
-
-db.createCollection("sucursal_automovil", {
-    capped: true,
-    size: 1900,
-    max: 5,
-    validator: {
-    $jsonSchema: {
-        bsonType: "object",
-        additionalProperties: false,
-        required: ["ID_Sucursal_id", "ID_Automovil_id", "Cantidad_Disponible"],
-        properties: {
-            _id:{
-                bsonType: 'objectId',
-            },
-            ID_Sucursal_id: {
-                bsonType: "int",
-                minimum: 0,
-                maximum: 20,
-                description: "El campo ID_Sucursal_id debe ser un número y estar comprendido entre 0 y 20"
-            },
-            ID_Automovil_id: {
-                bsonType: "int",
-                minimum: 0,
-                maximum: 20,
-                description: "El campo ID_Automovil_id debe ser un número y estar comprendido entre 0 y 20"
-            },
-            Cantidad_Disponible: {
-                bsonType: "int",
-                minimum: 0,
-                description: "El campo Cantidad_Disponible debe ser un número"
-            }
-        },
-    },
-    },
-});
-db.createCollection("automovil");
-db.createCollection("alquiler");
-db.createCollection("reserva");
-db.createCollection("cliente");
-db.createCollection("registro_devolucion");
-db.createCollection("registro_entrega");
-db.createCollection("empleado");
-
-use("db_campus_alquiler");
-db.sucursal.insertOne({
-    "ID_Sucursal": 1,
-    "Nombre": "Zona Franca",
-    "Direccion": "CLL 56 #13-36",
-    "Telefono": 322122112
-});
-
-use("db_campus_alquiler");
-db.sucursal_automovil.insertOne({
-    "ID_Sucursal": 1,
-    "ID_Automovil": 1,
-    "Cantidad_Disponible": 32
-});
-
-use("db_campus_alquiler");
-db.automovil.insertOne({
-
-    "ID_Automovil": 1,
-    "Marca": "Zona Franca",
-    "Modelo": "3xxd",
-    "Anio": 2023,
-    "Tipo": "Familiar",
-    "Capacidad": 6,
-    "Precio_Diario": 32243455543
-});
-
-use("db_campus_alquiler");
-db.alquiler.insertOne({
-    "ID_Alquiler": 1,
-    "ID_Cliente": 1,
-    "ID_Automovil_id": 1,
-    "Fecha_Inicio": "2023-07-31",
-    "Fecha_Fin": "2023-08-30",
-    "Costo_Total": 19997273665.654,
-    "Estado": "Pendiente"
-});
-
-use("db_campus_alquiler");
-db.reserva.insertOne({
-    "ID_Reserva": 1,
-    "ID_Cliente": 1,
-    "ID_Automovil_id": 1,
-    "Fecha_Reserva": "2023-07-28",
-    "Fecha_Inicio": "2023-07-31",
-    "Fecha_Fin": "2023-08-31",
-    "Estado": "Usando"
-});
-
-use("db_campus_alquiler");
-db.cliente.insertOne({
-    "ID_Cliente": 1,
-    "Nombre": "Ernesto",
-    "Apellido": "Perez",
-    "DNI": "Y1234567Z",
-    "Direccion": "CLL 56 #13-36",
-    "Telefono": 3224543241,
-    "Email": "ernezpe@gmail.com"
-});
-
-use("db_campus_alquiler");
-db.registro_devolucion.insertOne({
-    "ID_Registro": 1,
-    "ID_Alquiler": 1,
-    "ID_Empleado": 1,
-    "Fecha_Devolucion": "31/08/2023",
-    "Combustible_Devuelto": 34.3,
-    "Kilometraje_Devuelto": 124,
-    "Monto_Adicional": 38908776
-});
-
-use("db_campus_alquiler");
-db.registro_entrega.insertOne({
-    "ID_Registro": 1,
-    "ID_Alquiler": 1,
-    "ID_Empleado": 1,
-    "Fecha_Entrega": "31/0/2023",
-    "Combustible_Entregado": 89.3,
-    "Kilometraje_Entregado": 524,
-});
-
-use("db_campus_alquiler");
-db.empleado.insertOne({
-    "ID_Empleado": 1,
-    "Nombre": "Miguel",
-    "Apellido": "Castro",
-    "DNI": "cedula",
-    "Direccion": "cll 34 #45-10",
-    "Telefono": 1234567890,
-    "Cargo": "Vendedor"
-});
-
-// -------------INSERT MANY--------------------
 
 use("db_campus_alquiler");
 db.sucursal.insertMany([
     {
-        "ID_Sucursal": 2,
-        "Nombre": "Sucursal Principal",
-        "Direccion": "Av. Libertadores #245",
-        "Telefono": 311998877
+        "id_sucursal": 1,
+        "nombre": "Sucursal A",
+        "direccion": "123 Main St",
+        "telefono": "555-1234"
     },
     {
-        "ID_Sucursal": 3,
-        "Nombre": "Sucursal Norte",
-        "Direccion": "Calle 72 #40-15",
-        "Telefono": 300112233
+        "id_sucursal": 2,
+        "nombre": "Sucursal B",
+        "direccion": "456 Elm St",
+        "telefono": "555-5678"
     },
     {
-        "ID_Sucursal": 4,
-        "Nombre": "Sucursal Centro",
-        "Direccion": "Plaza Mayor #10",
-        "Telefono": 311223344
+        "id_sucursal": 3,
+        "nombre": "Sucursal C",
+        "direccion": "789 Oak St",
+        "telefono": "555-9876"
     },
     {
-        "ID_Sucursal": 5,
-        "Nombre": "Sucursal Occidente",
-        "Direccion": "Carrera 80 #25-30",
-        "Telefono": 300445566
+        "id_sucursal": 4,
+        "nombre": "Sucursal D",
+        "direccion": "321 Maple St",
+        "telefono": "555-4321"
     },
     {
-        "ID_Sucursal": 6,
-        "Nombre": "Sucursal Sur",
-        "Direccion": "Calle 45 #12-50",
-        "Telefono": 322334455
+        "id_sucursal": 5,
+        "nombre": "Sucursal E",
+        "direccion": "654 Pine St",
+        "telefono": "555-8765"
     }
 ]);
 
 use("db_campus_alquiler");
-db.automovil.insertMany([
-    {
-        "ID_Automovil": 2,
-        "Marca": "Toyota",
-        "Modelo": "Corolla",
-        "Anio": 2022,
-        "Tipo": "Sedán",
-        "Capacidad": 5,
-        "Precio_Diario": 150000.00
+db.createCollection("sucursal_automovil", {
+    capped: true,
+    size: 1000,
+    max: 5,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_sucursal_id", "id_automovil_id", "cantidad_disponible"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_sucursal_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20,
+                    description: "The id_sucursal_id field must be a number and should be between 0 and 20"
+                },
+                id_automovil_id: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20,
+                    description: "The id_automovil_id field must be a number and should be between 0 and 20"
+                },
+                cantidad_disponible: {
+                    bsonType: "int",
+                    minimum: 0,
+                    description: "The cantidad_disponible field must be a number"
+                }
+            },
+        },
     },
-    {
-        "ID_Automovil": 3,
-        "Marca": "Ford",
-        "Modelo": "Explorer",
-        "Anio": 2021,
-        "Tipo": "SUV",
-        "Capacidad": 7,
-        "Precio_Diario": 180000.00
-    },
-    {
-        "ID_Automovil": 4,
-        "Marca": "Honda",
-        "Modelo": "Civic",
-        "Anio": 2023,
-        "Tipo": "Coupé",
-        "Capacidad": 4,
-        "Precio_Diario": 135000.00
-    },
-    {
-        "ID_Automovil": 5,
-        "Marca": "Chevrolet",
-        "Modelo": "Suburban",
-        "Anio": 2022,
-        "Tipo": "SUV",
-        "Capacidad": 8,
-        "Precio_Diario": 200000.00
-    },
-    {
-        "ID_Automovil": 6,
-        "Marca": "Nissan",
-        "Modelo": "Sentra",
-        "Anio": 2023,
-        "Tipo": "Sedán",
-        "Capacidad": 5,
-        "Precio_Diario": 155000.00
-    }
-]);
+});
 
 use("db_campus_alquiler");
 db.sucursal_automovil.insertMany([
     {
-        "ID_Sucursal": 2,
-        "ID_Automovil": 2,
-        "Cantidad_Disponible": 25
+        "id_sucursal_id": 1,
+        "id_automovil_id": 1,
+        "cantidad_disponible": 5
     },
     {
-        "ID_Sucursal": 1,
-        "ID_Automovil": 3,
-        "Cantidad_Disponible": 18
+        "id_sucursal_id": 1,
+        "id_automovil_id": 2,
+        "cantidad_disponible": 3
     },
     {
-        "ID_Sucursal": 3,
-        "ID_Automovil": 4,
-        "Cantidad_Disponible": 10
+        "id_sucursal_id": 2,
+        "id_automovil_id": 3,
+        "cantidad_disponible": 7
     },
     {
-        "ID_Sucursal": 2,
-        "ID_Automovil": 5,
-        "Cantidad_Disponible": 20
+        "id_sucursal_id": 2,
+        "id_automovil_id": 4,
+        "cantidad_disponible": 2
     },
     {
-        "ID_Sucursal": 1,
-        "ID_Automovil": 6,
-        "Cantidad_Disponible": 15
-    },
-    {
-        "ID_Sucursal": 4,
-        "ID_Automovil": 6,
-        "Cantidad_Disponible": 22
-    },
-    {
-        "ID_Sucursal": 4,
-        "ID_Automovil": 5,
-        "Cantidad_Disponible": 12
-    },
-    {
-        "ID_Sucursal": 5,
-        "ID_Automovil": 1,
-        "Cantidad_Disponible": 32
-    },
-    {
-        "ID_Sucursal": 6,
-        "ID_Automovil": 2,
-        "Cantidad_Disponible": 15
-    },
-    {
-        "ID_Sucursal": 5,
-        "ID_Automovil": 4,
-        "Cantidad_Disponible": 32
-    },
-    {
-        "ID_Sucursal": 6,
-        "ID_Automovil": 5,
-        "Cantidad_Disponible": 11
-    },
+        "id_sucursal_id": 3,
+        "id_automovil_id": 5,
+        "cantidad_disponible": 4
+    }
 ]);
 
 use("db_campus_alquiler");
-db.alquiler.insertMany([
-    {
-        "ID_Alquiler": 2,
-        "ID_Cliente": 5,
-        "ID_Automovil_id": 4,
-        "Fecha_Inicio": "2023-08-17",
-        "Fecha_Fin": "2023-08-25",
-        "Costo_Total": 7500000.00,
-        "Estado": "Disponible"
+db.createCollection("reserva", {
+    capped: true,
+    size: 1900,
+    max: 5,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_reserva", "id_cliente_id", "id_automovil_id", "fecha_reserva", "fecha_inicio", "fecha_fin", "estado"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_reserva: {
+                    bsonType: "int",
+                    description: "The id_reserva field must be a number"
+                },
+                id_cliente_id: {
+                    bsonType: "int",
+                    description: "The id_cliente_id field must be a number"
+                },
+                id_automovil_id: {
+                    bsonType: "int",
+                    description: "The id_automovil_id field must be a number"
+                },
+                fecha_reserva: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_reserva field, and it should be a date data"
+                },
+                fecha_inicio: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_inicio field, and it should be a date data"
+                },
+                fecha_fin: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_fin field, and it should be a date data"
+                },
+                estado: {
+                    bsonType: "string",
+                    description: "You must provide the estado field, and it should be a string"
+                }
+            },
+        },
     },
-    {
-        "ID_Alquiler": 3,
-        "ID_Cliente": 2,
-        "ID_Automovil_id": 8,
-        "Fecha_Inicio": "2023-09-01",
-        "Fecha_Fin": "2023-09-10",
-        "Costo_Total": 12000000.00,
-        "Estado": "Aprobado"
-    },
-    {
-        "ID_Alquiler": 4,
-        "ID_Cliente": 3,
-        "ID_Automovil_id": 6,
-        "Fecha_Inicio": "2023-10-12",
-        "Fecha_Fin": "2023-10-12",
-        "Costo_Total": 5000000.00,
-        "Estado": "Disponible"
-    },
-    {
-        "ID_Alquiler": 5,
-        "ID_Cliente": 6,
-        "ID_Automovil_id": 14,
-        "Fecha_Inicio": "2023-07-05",
-        "Fecha_Fin": "2023-08-05",
-        "Costo_Total": 15000000.00,
-        "Estado": "Aprobado"
-    },
-    {
-        "ID_Alquiler": 6,
-        "ID_Cliente": 4,
-        "ID_Automovil_id": 9,
-        "Fecha_Inicio": "2023-09-15",
-        "Fecha_Fin": "2023-10-15",
-        "Costo_Total": 8500000.00,
-        "Estado": "Pendiente"
-    }
-
-]);
+});
 
 use("db_campus_alquiler");
 db.reserva.insertMany([
     {
-        "ID_Reserva": 2,
-        "ID_Cliente": 1,
-        "ID_Automovil_id": 4,
-        "Fecha_Reserva": "2023-07-02",
-        "Fecha_Inicio": "2023-07-05",
-        "Fecha_Fin": "2023-08-15",
-        "Estado": "Pendiente"
+        "id_reserva": 1,
+        "id_cliente_id": 3,
+        "id_automovil_id": 6,
+        "fecha_reserva": ISODate("2023-09-01"),
+        "fecha_inicio": ISODate("2023-09-10"),
+        "fecha_fin": ISODate("2023-09-17"),
+        "estado": "Activo"
     },
     {
-        "ID_Reserva": 3,
-        "ID_Cliente": 2,
-        "ID_Automovil_id": 5,
-        "Fecha_Reserva": "2023-08-07",
-        "Fecha_Inicio": "2023-08-10",
-        "Fecha_Fin": "2023-08-20",
-        "Estado": "Aprobado"
+        "id_reserva": 2,
+        "id_cliente_id": 1,
+        "id_automovil_id": 3,
+        "fecha_reserva": ISODate("2023-09-02"),
+        "fecha_inicio": ISODate("2023-09-12"),
+        "fecha_fin": ISODate("2023-09-19"),
+        "estado": "Activo"
     },
     {
-        "ID_Reserva": 4,
-        "ID_Cliente": 5,
-        "ID_Automovil_id": 2,
-        "Fecha_Reserva": "2023-08-03",
-        "Fecha_Inicio": "2023-08-12",
-        "Fecha_Fin": "2023-08-22",
-        "Estado": "Finalizado"
+        "id_reserva": 3,
+        "id_cliente_id": 2,
+        "id_automovil_id": 5,
+        "fecha_reserva": ISODate("2023-09-03"),
+        "fecha_inicio": ISODate("2023-09-14"),
+        "fecha_fin": ISODate("2023-09-21"),
+        "estado": "Pendiente"
     },
     {
-        "ID_Reserva": 5,
-        "ID_Cliente": 4,
-        "ID_Automovil_id": 6,
-        "Fecha_Reserva": "2023-08-04",
-        "Fecha_Inicio": "2023-08-08",
-        "Fecha_Fin": "2023-08-18",
-        "Estado": "Cancelado"
+        "id_reserva": 4,
+        "id_cliente_id": 1,
+        "id_automovil_id": 2,
+        "fecha_reserva": ISODate("2023-09-04"),
+        "fecha_inicio": ISODate("2023-09-16"),
+        "fecha_fin": ISODate("2023-09-23"),
+        "estado": "Pendiente"
     },
     {
-        "ID_Reserva": 6,
-        "ID_Cliente": 3,
-        "ID_Automovil_id": 1,
-        "Fecha_Reserva": "2023-08-06",
-        "Fecha_Inicio": "2023-08-18",
-        "Fecha_Fin": "2023-08-28",
-        "Estado": "Usando"
+        "id_reserva": 5,
+        "id_cliente_id": 3,
+        "id_automovil_id": 4,
+        "fecha_reserva": ISODate("2023-09-05"),
+        "fecha_inicio": ISODate("2023-09-18"),
+        "fecha_fin": ISODate("2023-09-25"),
+        "estado": "Activo"
     }
 ]);
+
+use("db_campus_alquiler");
+db.createCollection("automovil", {
+    capped: true,
+    size: 1210,
+    max: 10,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_automovil", "marca", "modelo",  "anio", "tipo", "capacidad", "precio_diario"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_automovil: {
+                    bsonType: "int",
+                    description: "The id_automovil field must be a number"
+                },
+                marca: {
+                    bsonType: "string",
+                    description: "You must provide the marca field, and it should be a string",
+                },
+                modelo: {
+                    bsonType: "string",
+                    description: "You must provide the modelo field, and it should be a string",
+                },
+                anio: {
+                    bsonType: "int",
+                    description: "The anio field must be a number and should be a maximum of 2024"
+                },
+                tipo: {
+                    bsonType: "string",
+                    description: "You must provide the tipo field, and it should be a string",
+                },
+                capacidad: {
+                    bsonType: "int",
+                    description: "The capacidad field must be a number and should be a maximum of 8"
+                },
+                precio_diario: {
+                    bsonType: "number",
+                    description: "The precio_diario field must be a number"
+                }
+            },
+        },
+    },
+});
+
+use("db_campus_alquiler");
+db.automovil.insertMany([
+    {
+        "id_automovil": 1,
+        "marca": "Toyota",
+        "modelo": "Corolla",
+        "anio": 2022,
+        "tipo": "Sedan",
+        "capacidad": 5,
+        "precio_diario": 5000000
+    },
+    {
+        "id_automovil": 2,
+        "marca": "Honda",
+        "modelo": "Civic",
+        "anio": 2023,
+        "tipo": "Sedan",
+        "capacidad": 5,
+        "precio_diario": 5500000
+    },
+    {
+        "id_automovil": 3,
+        "marca": "Ford",
+        "modelo": "Escape",
+        "anio": 2023,
+        "tipo": "SUV",
+        "capacidad": 5,
+        "precio_diario": 6000000
+    },
+    {
+        "id_automovil": 4,
+        "marca": "Chevrolet",
+        "modelo": "Cruze",
+        "anio": 2022,
+        "tipo": "Sedan",
+        "capacidad": 5,
+        "precio_diario": 4800000
+    },
+    {
+        "id_automovil": 5,
+        "marca": "Nissan",
+        "modelo": "Rogue",
+        "anio": 2023,
+        "tipo": "SUV",
+        "capacidad": 5,
+        "precio_diario": 5800000
+    }
+]);
+
+use("db_campus_alquiler");
+db.createCollection("cliente", {
+    capped: true,
+    size: 1600,
+    max: 10,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_cliente", "nombre", "apellido", "dni", "direccion", "telefono", "email"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_cliente: {
+                    bsonType: "int",
+                    description: "The id_cliente field must be a number"
+                },
+                nombre: {
+                    bsonType: "string",
+                    description: "You must provide the nombre field, and it should be a string"
+                },
+                apellido: {
+                    bsonType: "string",
+                    description: "You must provide the apellido field, and it should be a string"
+                },
+                dni: {
+                    bsonType: "object",
+                    properties: {
+                        "cedula": {
+                            bsonType: "string",
+                            pattern: "^[0-9]+$",
+                            description: "You must provide the cedula field, and it should be a numeric string"
+                        },
+                        "pasaporte": {
+                            bsonType: "string",
+                            pattern: "^[0-9]+$",
+                            description: "You must provide the pasaporte field, and it should be a numeric string"
+                        },
+                        "cedula_extranjeria": {
+                            bsonType: "string",
+                            pattern: "^[0-9]+$",
+                            description: "You must provide the cedula_extranjeria field, and it should be a numeric string"
+                        }
+                    },
+                    description: "The dni field must be an object with valid fields"
+                },
+                direccion: {
+                    bsonType: "string",
+                    description: "You must provide the direccion field, and it should be a string"
+                },
+                telefono: {
+                    bsonType: "string",
+                    description: "You must provide the telefono field, and it should be a numeric string"
+                },
+                email: {
+                    bsonType: "string",
+                    pattern: "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                    description: "You must provide a valid email field"
+                }
+            }
+        }
+    }
+});
 
 use("db_campus_alquiler");
 db.cliente.insertMany([
     {
-        "ID_Cliente": 2,
-        "Nombre": "María",
-        "Apellido": "González",
-        "DNI": "H1234567I",
-        "Direccion": "Av. Libertadores #245",
-        "Telefono": 3119988772,
-        "Email": "mariagonzalez@example.com"
+        "id_cliente": 1,
+        "nombre": "Ana",
+        "apellido": "Gomez",
+        "dni": {
+            "cedula": "12345678"
+        },
+        "direccion": "Calle 123, Ciudad",
+        "telefono": "1234567890",
+        "email": "ana@example.com"
     },
     {
-        "ID_Cliente": 3,
-        "Nombre": "Carlos",
-        "Apellido": "Ramírez",
-        "DNI": "J1234567K",
-        "Direccion": "Calle 72 #40-15",
-        "Telefono": 3001122333,
-        "Email": "carlosramirez@example.com"
+        "id_cliente": 2,
+        "nombre": "Carlos",
+        "apellido": "Perez",
+        "dni": {
+            "pasaporte": "98765432"
+        },
+        "direccion": "Avenida XYZ, Ciudad",
+        "telefono": "9876543210",
+        "email": "carlos@example.com"
     },
     {
-        "ID_Cliente": 4,
-        "Nombre": "Laura",
-        "Apellido": "López",
-        "DNI": "M1234567N",
-        "Direccion": "Plaza Mayor #10",
-        "Telefono": 3112233444,
-        "Email": "lauralopez@example.com"
+        "id_cliente": 3,
+        "nombre": "Maria",
+        "apellido": "Lopez",
+        "dni": {
+            "cedula_extranjeria": "56789012"
+        },
+        "direccion": "Plaza ABC, Ciudad",
+        "telefono": "5678901234",
+        "email": "maria@example.com"
     },
     {
-        "ID_Cliente": 5,
-        "Nombre": "José",
-        "Apellido": "Martínez",
-        "DNI": "O1234567P",
-        "Direccion": "Carrera 80 #25-30",
-        "Telefono": 3004455665,
-        "Email": "josemartinez@example.com"
+        "id_cliente": 4,
+        "nombre": "Luis",
+        "apellido": "Rodriguez",
+        "dni": {
+            "cedula": "23456789"
+        },
+        "direccion": "Carrera 456, Ciudad",
+        "telefono": "4567890123",
+        "email": "luis@example.com"
     },
     {
-        "ID_Cliente": 6,
-        "Nombre": "Ana",
-        "Apellido": "Sánchez",
-        "DNI": "Q1234567R",
-        "Direccion": "Calle 45 #12-50",
-        "Telefono": 3223344556,
-        "Email": "anasanchez@example.com"
+        "id_cliente": 5,
+        "nombre": "Laura",
+        "apellido": "Fernandez",
+        "dni": {
+            "pasaporte": "56789012"
+        },
+        "direccion": "Calle Principal, Ciudad",
+        "telefono": "5678901234",
+        "email": "laura@example.com"
     }
 ]);
+
+use("db_campus_alquiler");
+db.createCollection("alquiler", {
+    capped: true,
+    size: 1500,
+    max: 10,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_alquiler", "id_cliente_id", "id_automovil_id", "fecha_inicio", "fecha_fin", "costo_total", "estado"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_alquiler: {
+                    bsonType: "int",
+                    description: "The id_alquiler field must be a number"
+                },
+                id_cliente_id: {
+                    bsonType: "int",
+                    description: "The id_cliente_id field must be a number"
+                },
+                id_automovil_id: {
+                    bsonType: "int",
+                    description: "The id_automovil_id field must be a number"
+                },
+                fecha_inicio: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_inicio field, and it should be a date data"
+                },
+                fecha_fin: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_fin field, and it should be a date data"
+                },
+                costo_total: {
+                    bsonType: "number",
+                    description: "The costo_total field must be a number"
+                },
+                estado: {
+                    bsonType: "string",
+                    description: "You must provide the estado field, and it should be a string"
+                }
+            },
+        },
+    },
+});
+
+use("db_campus_alquiler");
+db.alquiler.insertMany([
+    {
+        "id_alquiler": 1,
+        "id_cliente_id": 1,
+        "id_automovil_id": 1,
+        "fecha_inicio": ISODate("2023-08-15"),
+        "fecha_fin": ISODate("2023-08-20"),
+        "costo_total": 450000,
+        "estado": "Activo"
+    },
+    {
+        "id_alquiler": 2,
+        "id_cliente_id": 2,
+        "id_automovil_id": 3,
+        "fecha_inicio": ISODate("2023-09-10"),
+        "fecha_fin": ISODate("2023-09-15"),
+        "costo_total": 550000,
+        "estado": "Disponible"
+    },
+    {
+        "id_alquiler": 3,
+        "id_cliente_id": 1,
+        "id_automovil_id": 2,
+        "fecha_inicio": ISODate("2023-10-01"),
+        "fecha_fin": ISODate("2023-10-05"),
+        "costo_total": 320000,
+        "estado": "Disponible"
+    },
+    {
+        "id_alquiler": 4,
+        "id_cliente_id": 3,
+        "id_automovil_id": 5,
+        "fecha_inicio": ISODate("2023-11-12"),
+        "fecha_fin": ISODate("2023-11-18"),
+        "costo_total": 680000,
+        "estado": "Activo"
+    },
+    {
+        "id_alquiler": 5,
+        "id_cliente_id": 4,
+        "id_automovil_id": 1,
+        "fecha_inicio": ISODate("2023-12-05"),
+        "fecha_fin": ISODate("2023-12-10"),
+        "costo_total": 500000,
+        "estado": "Pendiente"
+    }
+]);
+
+use("db_campus_alquiler");
+db.createCollection("registro_devolucion", {
+    capped: true,
+    size: 1600,
+    max: 10,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_registro", "id_alquiler_id", "id_empleado_id", "fecha_devolucion", "combustible_devuelto", "kilometraje_devuelto", "monto_adicional"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_registro: {
+                    bsonType: "int",
+                    description: "The id_registro field must be a number"
+                },
+                id_alquiler_id: {
+                    bsonType: "int",
+                    description: "The id_alquiler_id field must be a number"
+                },
+                id_empleado_id: {
+                    bsonType: "int",
+                    description: "The id_empleado_id field must be a number"
+                },
+                fecha_devolucion: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_devolucion field, and it should be a date data",
+                },
+                combustible_devuelto: {
+                    bsonType: "number",
+                    description: "The combustible_devuelto field must be a number"
+                },
+                kilometraje_devuelto: {
+                    bsonType: "number",
+                    description: "The kilometraje_devuelto field must be a number"
+                },
+                monto_adicional: {
+                    bsonType: "number",
+                    description: "The monto_adicional field must be a number"
+                }
+            },
+        },
+    },
+});
 
 use("db_campus_alquiler");
 db.registro_devolucion.insertMany([
     {
-        "ID_Registro": 2,
-        "ID_Alquiler": 2,
-        "ID_Empleado": 2,
-        "Fecha_Devolucion": "25/08/2023",
-        "Combustible_Devuelto": 45.2,
-        "Kilometraje_Devuelto": 176,
-        "Monto_Adicional": 24000000
+        "id_registro": 1,
+        "id_alquiler_id": 1,
+        "id_empleado_id": 1,
+        "fecha_devolucion": ISODate("2023-08-20"),
+        "combustible_devuelto": 28,
+        "kilometraje_devuelto": 150,
+        "monto_adicional": 100000
     },
     {
-        "ID_Registro": 3,
-        "ID_Alquiler": 3,
-        "ID_Empleado": 1,
-        "Fecha_Devolucion": "18/08/2023",
-        "Combustible_Devuelto": 12.7,
-        "Kilometraje_Devuelto": 89,
-        "Monto_Adicional": 7600000
+        "id_registro": 2,
+        "id_alquiler_id": 2,
+        "id_empleado_id": 2,
+        "fecha_devolucion": ISODate("2023-09-15"),
+        "combustible_devuelto": 20,
+        "kilometraje_devuelto": 200,
+        "monto_adicional": 500000
     },
     {
-        "ID_Registro": 4,
-        "ID_Alquiler": 4,
-        "ID_Empleado": 3,
-        "Fecha_Devolucion": "03/09/2023",
-        "Combustible_Devuelto": 55.8,
-        "Kilometraje_Devuelto": 210,
-        "Monto_Adicional": 18000000
+        "id_registro": 3,
+        "id_alquiler_id": 3,
+        "id_empleado_id": 1,
+        "fecha_devolucion": ISODate("2023-10-05"),
+        "combustible_devuelto": 35,
+        "kilometraje_devuelto": 180,
+        "monto_adicional": 100000
     },
     {
-        "ID_Registro": 5,
-        "ID_Alquiler": 5,
-        "ID_Empleado": 2,
-        "Fecha_Devolucion": "20/08/2023",
-        "Combustible_Devuelto": 67.5,
-        "Kilometraje_Devuelto": 300,
-        "Monto_Adicional": 5000000
+        "id_registro": 4,
+        "id_alquiler_id": 4,
+        "id_empleado_id": 3,
+        "fecha_devolucion": ISODate("2023-11-18"),
+        "combustible_devuelto": 45,
+        "kilometraje_devuelto": 280,
+        "monto_adicional": 400000
     },
     {
-        "ID_Registro": 6,
-        "ID_Alquiler": 6,
-        "ID_Empleado": 3,
-        "Fecha_Devolucion": "12/09/2023",
-        "Combustible_Devuelto": 22.1,
-        "Kilometraje_Devuelto": 140,
-        "Monto_Adicional": 32000000
+        "id_registro": 5,
+        "id_alquiler_id": 5,
+        "id_empleado_id": 4,
+        "fecha_devolucion": ISODate("2023-12-10"),
+        "combustible_devuelto": 30,
+        "kilometraje_devuelto": 220,
+        "monto_adicional": 200000
     }
 ]);
+
+use("db_campus_alquiler");
+db.createCollection("registro_entrega", {
+    capped: true,
+    size: 1300,
+    max: 10,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_registro", "id_alquiler_id", "id_empleado_id", "fecha_entrega", "combustible_entregado", "kilometraje_entregado"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_registro: {
+                    bsonType: "int",
+                    description: "The id_registro field must be a number"
+                },
+                id_alquiler_id: {
+                    bsonType: "int",
+                    description: "The id_alquiler_id field must be a number"
+                },
+                id_empleado_id: {
+                    bsonType: "int",
+                    description: "The id_empleado_id field must be a number"
+                },
+                fecha_entrega: {
+                    bsonType: "date",
+                    description: "You must provide the fecha_entrega field, and it should be a date data",
+                },
+                combustible_entregado: {
+                    bsonType: "number",
+                    description: "The combustible_entregado field must be a number"
+                },
+                kilometraje_entregado: {
+                    bsonType: "number",
+                    description: "The kilometraje_entregado field must be a number"
+                }
+            },
+        },
+    },
+});
 
 use("db_campus_alquiler");
 db.registro_entrega.insertMany([
     {
-        "ID_Registro": 2,
-        "ID_Alquiler": 2,
-        "ID_Empleado": 2,
-        "Fecha_Entrega": "15/08/2023",
-        "Combustible_Entregado": 65.8,
-        "Kilometraje_Entregado": 412
+        "id_registro": 1,
+        "id_alquiler_id": 1,
+        "id_empleado_id": 1,
+        "fecha_entrega": ISODate("2023-08-21"),
+        "combustible_entregado": 25,
+        "kilometraje_entregado": 130
     },
     {
-        "ID_Registro": 3,
-        "ID_Alquiler": 3,
-        "ID_Empleado": 3,
-        "Fecha_Entrega": "22/08/2023",
-        "Combustible_Entregado": 74.2,
-        "Kilometraje_Entregado": 600
+        "id_registro": 2,
+        "id_alquiler_id": 2,
+        "id_empleado_id": 2,
+        "fecha_entrega": ISODate("2023-09-16"),
+        "combustible_entregado": 18,
+        "kilometraje_entregado": 180
     },
     {
-        "ID_Registro": 4,
-        "ID_Alquiler": 4,
-        "ID_Empleado": 2,
-        "Fecha_Entrega": "10/08/2023",
-        "Combustible_Entregado": 80.0,
-        "Kilometraje_Entregado": 480
+        "id_registro": 3,
+        "id_alquiler_id": 3,
+        "id_empleado_id": 1,
+        "fecha_entrega": ISODate("2023-10-06"),
+        "combustible_entregado": 30,
+        "kilometraje_entregado": 150
     },
     {
-        "ID_Registro": 5,
-        "ID_Alquiler": 5,
-        "ID_Empleado": 1,
-        "Fecha_Entrega": "28/08/2023",
-        "Combustible_Entregado": 70.5,
-        "Kilometraje_Entregado": 550
+        "id_registro": 4,
+        "id_alquiler_id": 4,
+        "id_empleado_id": 3,
+        "fecha_entrega": ISODate("2023-11-19"),
+        "combustible_entregado": 40,
+        "kilometraje_entregado": 250
     },
     {
-        "ID_Registro": 6,
-        "ID_Alquiler": 6,
-        "ID_Empleado": 3,
-        "Fecha_Entrega": "03/09/2023",
-        "Combustible_Entregado": 52.1,
-        "Kilometraje_Entregado": 360
+        "id_registro": 5,
+        "id_alquiler_id": 5,
+        "id_empleado_id": 4,
+        "fecha_entrega": ISODate("2023-12-11"),
+        "combustible_entregado": 28,
+        "kilometraje_entregado": 200
     }
 ]);
 
 use("db_campus_alquiler");
+db.createCollection("empleado", {
+    capped: true,
+    size: 1900,
+    max: 5,
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            additionalProperties: false,
+            required: ["id_empleado", "nombre", "apellido", "dni", "direccion", "telefono", "cargo"],
+            properties: {
+                _id: {
+                    bsonType: 'objectId',
+                },
+                id_empleado: {
+                    bsonType: "int",
+                    minimum: 0,
+                    maximum: 20,
+                    description: "The id_empleado field must be a number and should be between 0 and 20",
+                },
+                nombre: {
+                    bsonType: "string",
+                    pattern: "^[A-Za-z\\s]+$",
+                    description: "You must provide the nombre field, and it should be a string",
+                },
+                apellido: {
+                    bsonType: "string",
+                    pattern: "^[A-Za-z\\s]+$",
+                    description: "You must provide the apellido field, and it should be a string",
+                },
+                dni: {
+                    bsonType: "object",
+                    properties: {
+                        "cedula": {
+                            bsonType: "string",
+                            pattern: "^[0-9]+$",
+                            description: "You must provide the cedula field, and it should be a numeric string"
+                        },
+                        "pasaporte": {
+                            bsonType: "string",
+                            pattern: "^[0-9]+$",
+                            description: "You must provide the pasaporte field, and it should be a numeric string"
+                        },
+                        "cedula_extranjeria": {
+                            bsonType: "string",
+                            pattern: "^[0-9]+$",
+                            description: "You must provide the cedula_extranjeria field, and it should be a numeric string"
+                        }
+                    },
+                    description: "The dni field must be an object with valid fields"
+                },
+                direccion: {
+                    bsonType: "string",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    description: "You must provide the direccion field, and it should be a string",
+                },
+                telefono: {
+                    bsonType: "string",
+                    pattern: "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ,.#@\\s-]+$",
+                    description: "You must provide the telefono field, and it should be a string",
+                },
+                cargo: {
+                    bsonType: "string",
+                    description: "You must provide the cargo field, and it should be a string",
+                },
+            },
+        },
+    },
+});
+
+use("db_campus_alquiler");
 db.empleado.insertMany([
     {
-        "ID_Empleado": 2,
-        "Nombre": "Ana",
-        "Apellido": "López",
-        "DNI": "cedula2",
-        "Direccion": "Av. Libertadores #245",
-        "Telefono": 9876543210,
-        "Cargo": "Asistente"
+        "id_empleado": 1,
+        "nombre": "Juan",
+        "apellido": "Perez",
+        "dni": {
+            "cedula": "1234567890"
+        },
+        "direccion": "Calle 123, Ciudad",
+        "telefono": "987654321",
+        "cargo": "Gerente"
     },
     {
-        "ID_Empleado": 3,
-        "Nombre": "Carlos",
-        "Apellido": "Ramírez",
-        "DNI": "cedula3",
-        "Direccion": "Calle 72 #40-15",
-        "Telefono": 4567890123,
-        "Cargo": "Supervisor"
+        "id_empleado": 2,
+        "nombre": "Maria",
+        "apellido": "Gonzalez",
+        "dni": {
+            "pasaporte": "9876543210"
+        },
+        "direccion": "Avenida 456, Ciudad",
+        "telefono": "654987321",
+        "cargo": "Supervisor"
     },
     {
-        "ID_Empleado": 4,
-        "Nombre": "Laura",
-        "Apellido": "González",
-        "DNI": "cedula4",
-        "Direccion": "Plaza Mayor #10",
-        "Telefono": 9012345678,
-        "Cargo": "Gerente"
+        "id_empleado": 3,
+        "nombre": "Carlos",
+        "apellido": "Lopez",
+        "dni": {
+            "cedula_extranjeria": "2468135790"
+        },
+        "direccion": "Plaza 789, Ciudad",
+        "telefono": "321654987",
+        "cargo": "Asistente"
     },
     {
-        "ID_Empleado": 5,
-        "Nombre": "José",
-        "Apellido": "Martínez",
-        "DNI": "cedula5",
-        "Direccion": "Carrera 80 #25-30",
-        "Telefono": 6789012345,
-        "Cargo": "Vendedor"
+        "id_empleado": 4,
+        "nombre": "Ana",
+        "apellido": "Rodriguez",
+        "dni": {
+            "cedula": "9876543211"
+        },
+        "direccion": "Carrera 567, Ciudad",
+        "telefono": "789456123",
+        "cargo": "Recepcionista"
     },
     {
-        "ID_Empleado": 6,
-        "Nombre": "María",
-        "Apellido": "Sánchez",
-        "DNI": "cedula6",
-        "Direccion": "Calle 45 #12-50",
-        "Telefono": 3456789012,
-        "Cargo": "Asistente"
+        "id_empleado": 5,
+        "nombre": "Luis",
+        "apellido": "Martinez",
+        "dni": {
+            "pasaporte": "5432109876"
+        },
+        "direccion": "Avenida 123, Ciudad",
+        "telefono": "123456789",
+        "cargo": "Conductor"
     }
 ]);
 
@@ -619,11 +869,11 @@ db.alquiler.updateMany(
 
 // 1. Show all the clients register in the database
 use("db_campus_alquiler");
-db.cliente.find({},{Nombre:1, Apellido:1, _id:0});
+db.cliente.find({},{nombre:1, apellido:1, _id:0});
 
 // 2. Get all the vehicles available for rent
 use("db_campus_alquiler");
-db.alquiler.find({ Estado: { $eq: "Disponible" } });
+db.alquiler.find({ estado: { $eq: "Disponible" } });
 
 // 3. List all active rentals along with the details of the related customers
 use("db_campus_alquiler");
@@ -631,22 +881,22 @@ db.cliente.aggregate([
     {
         $lookup: {
             from: "alquiler",
-            localField: "ID_Cliente",
-            foreignField: "ID_Cliente",
+            localField: "id_cliente",
+            foreignField: "id_cliente_id",
             as: "data_Alquiler"
         }
     },
     {
         $project: {
           "data_Alquiler._id":0,
-          "data_Alquiler.ID_Cliente":0,
-          "data_Alquiler.ID_Automovil_id":0,
-          "data_Alquiler.Costo_Total":0,
+          "data_Alquiler.id_cliente_id":0,
+          "data_Alquiler.id_automovil_id":0,
+          "data_Alquiler.costo_total":0,
         }
     },
     {
         $match: {
-            "data_Alquiler.Estado": { $eq: "Activo" }
+            "data_Alquiler.estado": { $eq: "Activo" }
         }
     },
     {
@@ -655,13 +905,13 @@ db.cliente.aggregate([
     {
         $group: {
             _id: "$_id",
-            ID_Cliente:{$first:"$ID_Cliente"},
-            Nombre:{$first:"$Nombre"},
-            Apellido:{$first:"$Apellido"},
-            DNI:{$first:"$DNI"},
-            Direccion:{$first:"$Direccion"},
-            Telefono:{$first:"$Telefono"},
-            Email:{$first:"$Email"},
+            ID_Cliente:{$first:"$id_cliente"},
+            Nombre:{$first:"$nombre"},
+            Apellido:{$first:"$apellido"},
+            DNI:{$first:"$dni"},
+            Direccion:{$first:"$direccion"},
+            Telefono:{$first:"$telefono"},
+            Email:{$first:"$email"},
             data_Alquiler:{$first:"$data_Alquiler"}
         }
     }
@@ -673,21 +923,21 @@ db.reserva.aggregate([
     {
       $lookup: {
         from: "cliente",
-        localField: "ID_Cliente",
-        foreignField: "ID_Cliente",
+        localField: "id_cliente_id",
+        foreignField: "id_cliente",
         as: "data_Cliente"
       }
     },
     {
         $project: {
           "data_Cliente._id":0,
-          "data_Cliente.ID_Cliente":0,
-          "data_Cliente.DNI":0
+          "data_Cliente.id_cliente":0,
+          "data_Cliente.dni":0
         }
     },
     {
         $match: {
-            Estado: { $eq: "Pendiente" }
+            estado: { $eq: "Pendiente" }
         }
     },
     {
