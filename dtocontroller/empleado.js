@@ -8,66 +8,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose } from 'class-transformer';
-import { IsDefined } from 'class-validator';
+import { IsDefined, IsString } from 'class-validator';
 export class Empleado {
     constructor(data) {
         Object.assign(this, data);
-        this.ID_Empleado = 0;
-        this.Nombre = "";
-        this.Apellido = "";
-        this.DNI = "";
-        this.Direccion = "";
-        this.Telefono = "";
-        this.Cargo = "";
+        this.id_empleado = 0;
+        this.nombre = "";
+        this.apellido = "";
+        this.dni = "";
+        this.direccion = "";
+        this.telefono = "";
+        this.cargo = "";
     }
 }
 __decorate([
-    Expose({ name: 'employee' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro employee es obligatorio` }; } }),
+    Expose({ name: 'empleado' }),
+    IsDefined({ message: () => { throw { status: 422, message: `El parametro empleado es obligatorio` }; } }),
     __metadata("design:type", Number)
-], Empleado.prototype, "ID_Empleado", void 0);
+], Empleado.prototype, "id_empleado", void 0);
 __decorate([
-    Expose({ name: 'name' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro name es obligatorio` }; } }),
+    Expose({ name: 'nombre' }),
+    IsDefined({ message: 'The parameter nombre is required' }),
+    IsString({ message: 'The parameter nombre must be a string' }),
     __metadata("design:type", String)
-], Empleado.prototype, "Nombre", void 0);
+], Empleado.prototype, "nombre", void 0);
 __decorate([
-    Expose({ name: 'surname' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro surname es obligatorio` }; } }),
+    Expose({ name: 'apellido' }),
+    IsDefined({ message: 'The parameter apellido is required' }),
+    IsString({ message: 'The parameter apellido must be a string' }),
     __metadata("design:type", String)
-], Empleado.prototype, "Apellido", void 0);
+], Empleado.prototype, "apellido", void 0);
 __decorate([
-    Expose({ name: 'identification' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro identification es obligatorio` }; } }),
+    Expose({ name: 'dni' }),
+    IsDefined({ message: 'The parameter DNI is required' }),
+    IsString({ message: 'The parameter DNI must be an object' }),
     __metadata("design:type", String)
-], Empleado.prototype, "DNI", void 0);
+], Empleado.prototype, "dni", void 0);
 __decorate([
-    Expose({ name: 'address' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro address es obligatorio` }; } }),
+    Expose({ name: 'direccion' }),
+    IsDefined({ message: 'The parameter direccion is required' }),
+    IsString({ message: 'The parameter direccion must be a string' }),
     __metadata("design:type", String)
-], Empleado.prototype, "Direccion", void 0);
+], Empleado.prototype, "direccion", void 0);
 __decorate([
-    Expose({ name: 'phonenumber' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro phonenumber es obligatorio` }; } }),
+    Expose({ name: 'telefono' }),
+    IsDefined({ message: 'The parameter telefono is required' }),
+    IsString({ message: 'The parameter telefono must be a string' }),
     __metadata("design:type", String)
-], Empleado.prototype, "Telefono", void 0);
+], Empleado.prototype, "telefono", void 0);
 __decorate([
-    Expose({ name: 'ocupation' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro ocupation es obligatorio` }; } }),
+    Expose({ name: 'cargo' }),
+    IsDefined({ message: `El parametro ocupation es obligatorio` }),
+    IsString({ message: 'The parameter cargo must be a string' }),
     __metadata("design:type", String)
-], Empleado.prototype, "Cargo", void 0);
+], Empleado.prototype, "cargo", void 0);
 ;
