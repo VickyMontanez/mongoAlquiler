@@ -8,36 +8,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose } from 'class-transformer';
-import { IsDefined } from 'class-validator';
+import { IsDefined, IsInt } from 'class-validator';
 export class SucuAutomovil {
     constructor(data) {
         Object.assign(this, data);
-        this.ID_Sucursal_id = 0;
-        this.ID_Automovil_id = 0;
-        this.Cantidad_Disponible = 0;
+        this.id_sucursal_id = 0;
+        this.id_automovil_id = 0;
+        this.cantidad_disponible = 0;
     }
 }
 __decorate([
-    Expose({ name: 'branchID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro branchID es obligatorio` }; } }),
+    Expose({ name: 'id_sucursal_id' }),
+    IsDefined({ message: 'The parameter id_sucursal_id is required' }),
+    IsInt({ message: 'The parameter id_sucursal_id must be a number' }),
     __metadata("design:type", Number)
-], SucuAutomovil.prototype, "ID_Sucursal_id", void 0);
+], SucuAutomovil.prototype, "id_sucursal_id", void 0);
 __decorate([
-    Expose({ name: 'carID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro carID es obligatorio` }; } }),
+    Expose({ name: 'id_automovil_id' }),
+    IsDefined({ message: 'The parameter id_automovil_id is required' }),
+    IsInt({ message: 'The parameter id_automovil_id must be a number' }),
     __metadata("design:type", Number)
-], SucuAutomovil.prototype, "ID_Automovil_id", void 0);
+], SucuAutomovil.prototype, "id_automovil_id", void 0);
 __decorate([
-    Expose({ name: 'quantity_available' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => {
-            throw { status: 422, message: `El parametro 
-    quantity_available es obligatorio` };
-        } }),
+    Expose({ name: 'cantidad_disponible' }),
+    IsDefined({ message: 'The parameter cantidad_disponible is required' }),
+    IsInt({ message: 'The parameter cantidad_disponible must be a number' }),
     __metadata("design:type", Number)
-], SucuAutomovil.prototype, "Cantidad_Disponible", void 0);
+], SucuAutomovil.prototype, "cantidad_disponible", void 0);

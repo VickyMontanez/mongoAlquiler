@@ -1,28 +1,27 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined } from 'class-validator';
+import { IsDefined , IsInt } from 'class-validator';
 export class SucuAutomovil {
 
-    @Expose({ name: 'branchID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro branchID es obligatorio` } } })
-    ID_Sucursal_id: number;
+    @Expose({ name: 'id_sucursal_id' })
+    @IsDefined({message: 'The parameter id_sucursal_id is required'})
+    @IsInt({ message: 'The parameter id_sucursal_id must be a number' })
+    id_sucursal_id: number;
 
-    @Expose({ name: 'carID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro carID es obligatorio` } } })
-    ID_Automovil_id: number;
+    @Expose({ name: 'id_automovil_id' })
+    @IsDefined({ message: 'The parameter id_automovil_id is required' })
+    @IsInt({ message: 'The parameter id_automovil_id must be a number' })
+    id_automovil_id: number;
 
-    @Expose({ name: 'quantity_available' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro 
-    quantity_available es obligatorio` } } })
-    Cantidad_Disponible: number;
+    @Expose({ name: 'cantidad_disponible' })
+    @IsDefined({ message: 'The parameter cantidad_disponible is required' })
+    @IsInt({ message: 'The parameter cantidad_disponible must be a number' })
+    cantidad_disponible: number;
 
     constructor(data: Partial<SucuAutomovil>) {
         Object.assign(this, data);
-        this.ID_Sucursal_id = 0;
-        this.ID_Automovil_id = 0;
-        this.Cantidad_Disponible = 0;
+        this.id_sucursal_id = 0;
+        this.id_automovil_id = 0;
+        this.cantidad_disponible = 0;
         
     }
 
