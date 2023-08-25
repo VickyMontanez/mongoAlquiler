@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose } from 'class-transformer';
-import { IsDefined, IsString } from 'class-validator';
+import { IsDefined, IsString, IsInt } from 'class-validator';
 export class Empleado {
     constructor(data) {
         Object.assign(this, data);
@@ -22,8 +22,9 @@ export class Empleado {
     }
 }
 __decorate([
-    Expose({ name: 'empleado' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro empleado es obligatorio` }; } }),
+    Expose({ name: 'id_empleado' }),
+    IsDefined({ message: `El parametro id_empleado es obligatorio` }),
+    IsInt({ message: 'The parameter id_empleado must be a number' }),
     __metadata("design:type", Number)
 ], Empleado.prototype, "id_empleado", void 0);
 __decorate([

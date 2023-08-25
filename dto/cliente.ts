@@ -1,9 +1,10 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined, IsString, Matches} from 'class-validator';
+import { IsDefined, IsString, Matches, IsInt} from 'class-validator';
 
 export class Cliente {
     @Expose({ name: 'id_cliente' })
     @IsDefined({ message: 'The parameter id_cliente is required' })
+    @IsInt({message: 'The parameter id_cliente must be a number'})  
     id_cliente: number;
 
     @Expose({ name: 'nombre' })

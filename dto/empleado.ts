@@ -1,10 +1,11 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined, IsString } from 'class-validator';
+import { IsDefined, IsString, IsInt } from 'class-validator';
 
 export class Empleado {
 
-    @Expose({ name: 'empleado' })
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro empleado es obligatorio` } } })
+    @Expose({ name: 'id_empleado' })
+    @IsDefined({ message: `El parametro id_empleado es obligatorio` })
+    @IsInt({message: 'The parameter id_empleado must be a number'})  
     id_empleado: number;
 
     @Expose({ name: 'nombre' })

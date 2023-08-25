@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose } from 'class-transformer';
-import { IsDefined, IsString, Matches } from 'class-validator';
+import { IsDefined, IsString, Matches, IsInt } from 'class-validator';
 export class Cliente {
     constructor(data) {
         Object.assign(this, data);
@@ -24,6 +24,7 @@ export class Cliente {
 __decorate([
     Expose({ name: 'id_cliente' }),
     IsDefined({ message: 'The parameter id_cliente is required' }),
+    IsInt({ message: 'The parameter id_cliente must be a number' }),
     __metadata("design:type", Number)
 ], Cliente.prototype, "id_cliente", void 0);
 __decorate([
