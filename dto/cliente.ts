@@ -1,5 +1,5 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined, IsString, IsObject, ValidateIf, Matches } from 'class-validator';
+import { IsDefined, IsString, Matches} from 'class-validator';
 
 export class Cliente {
     @Expose({ name: 'cliente' })
@@ -18,20 +18,8 @@ export class Cliente {
 
     @Expose({ name: 'dni' })
     @IsDefined({ message: 'The parameter DNI is required' })
-    @IsObject({ message: 'The parameter DNI must be an object' })
-    dni:{
-        @ValidateIf((obj, value) => value && value.cedula)
-        @Matches(/^[0-9]+$/, { message: 'The parameter cedula must be a numeric string' })
-        cedula?: string;
-
-        @ValidateIf((obj, value) => value && value.pasaporte)
-        @Matches(/^[0-9]+$/, { message: 'The parameter pasaporte must be a numeric string' })
-        pasaporte?: string;
-
-        @ValidateIf((obj, value) => value && value.cedula_extranjeria)
-        @Matches(/^[0-9]+$/, { message: 'The parameter cedula_extranjeria must be a numeric string' })
-        cedula_extranjeria?: string;
-    };
+    @IsString({ message: 'The parameter DNI must be an object' })
+    dni: string;
 
     @Expose({ name: 'direccion' })
     @IsDefined({ message: 'The parameter direccion is required' })
@@ -46,6 +34,7 @@ export class Cliente {
     @Expose({ name: 'email' })
     @IsDefined({ message: 'The parameter email is required' })
     @IsString({ message: 'The parameter email must be a string' })
+    @Matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/, { message: 'Invalid format for email' })
     email: string;
 
     constructor(data: Partial<Cliente>) {
@@ -53,7 +42,7 @@ export class Cliente {
         this.id_cliente = 0;
         this.nombre = '';
         this.apellido = '';
-        this.dni = {};
+        this.dni = '';
         this.direccion = '';
         this.telefono = '';
         this.email = '';
