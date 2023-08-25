@@ -1,57 +1,54 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined, IsString, Matches} from 'class-validator';
+import { IsDefined, IsString, IsInt, Matches} from 'class-validator';
 export class Reserva {
 
-    @Expose({ name: 'bookingID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro bookingID es obligatorio` } } })
-    ID_Reserva: number;
+    @Expose({ name: 'id_reserva' })
+    @IsInt({message: 'The parameter id_reserva must be a number'})
+    @IsDefined({ message: 'The parameter id_reserva is required' })
+    id_reserva: number;
 
-    @Expose({ name: 'clientID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro clientID es obligatorio` } } })
-    ID_Cliente_id: number;
+    @Expose({ name: 'id_cliente' })
+    @IsInt({message: 'The parameter id_cliente must be a number'})
+    @IsDefined({ message: 'The parameter id_cliente is required' })
+    id_cliente_id: number;
 
-    @Expose({ name: 'carID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro carID es obligatorio` } } })
-    ID_Automovil_id: number;
+    @Expose({ name: 'id_automovil' })
+    @IsInt({message: 'The parameter id_automovil must be a number'})
+    @IsDefined({ message: 'The parameter id_automovil is required' })
+    id_automovil_id: number;
 
-    @Expose({ name: 'reservation_date' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsString ({ message: 'El parametro reservation_date debe ser un string'})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro reservation_date es obligatorio` } } })
-    @Matches(/^\d{4}-\d{2}-\d{2$}/,{message: 'Error'})
-    Fecha_Reserva: string;
+    @Expose({ name: 'fecha_reserva' })
+    @IsString({ message: 'The parameter fecha_reserva must be a date' })
+    @IsDefined({ message: 'The parameter fecha_reserva is required' })
+    @Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'Invalid format for fecha_reserva' })
+    fecha_reserva: Date;
 
-    @Expose({ name: 'start_date' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsString ({ message: 'El parametro start_date debe ser un string'})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro start_date es obligatorio` } } })
-    @Matches(/^\d{4}-\d{2}-\d{2$}/,{message: 'Error'})
-    Fecha_Inicio: string;
+    @Expose({ name: 'fechaInicio' })
+    @IsString({ message: 'The parameter fechaInicio must be a date' })
+    @IsDefined({ message: 'The parameter fechaInicio is required' })
+    @Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'Invalid format for fechaInicio' })
+    fecha_inicio: Date;;
 
-    @Expose({ name: 'end_date' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsString ({ message: 'El parametro end_date debe ser un string'})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro end_date es obligatorio` } } })
-    @Matches(/^\d{4}-\d{2}-\d{2$}/,{message: 'Error'})
-    Fecha_Fin: string;
+    @Expose({ name: 'fechaFin' })
+    @IsString({ message: 'The parameter fechaFin must be a date' })
+    @IsDefined({ message: 'The parameter fechaFin is required' })
+    @Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'Invalid format for fechaFin' })
+    fecha_fin: Date;
 
-    @Expose({ name: 'estate' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro estate es obligatorio` } } })
-    Estado: string;
+    @Expose({ name: 'estado' })
+    @IsString({message: 'The parameter estado must be a string'})
+    @IsDefined({ message: 'The parameter estado is required' })
+    estado: string;
 
     constructor(data: Partial<Reserva>) {
         Object.assign(this, data);
-        this.ID_Reserva = 0;
-        this.ID_Cliente_id = 0;
-        this.ID_Automovil_id = 0;
-        this.Fecha_Reserva = "1991-01-01";
-        this.Fecha_Inicio = "1991-01-01";
-        this.Fecha_Fin = "1991-01-01";
-        this.Estado = "";
+        this.id_reserva = 0;
+        this.id_cliente_id = 0;
+        this.id_automovil_id = 0;
+        this.fecha_reserva = new Date();
+        this.fecha_inicio = new Date();
+        this.fecha_fin = new Date();
+        this.estado = "";
         
     }
 };
