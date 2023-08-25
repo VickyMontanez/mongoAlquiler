@@ -2,49 +2,49 @@ import {  IsDefined, IsString, Matches, IsInt } from 'class-validator';
 import { Expose,Transform } from 'class-transformer';
 
 export class Automovil {
-    @Expose({ name: 'car' })
-    @IsDefined({ message: 'El parametro car es obligatorio' })
-    @IsInt({ message: 'El parametro car debe ser un número' })
-    ID_Automovil: number;
+    @Expose({ name: 'automovil' })
+    @IsDefined({ message: 'The parameter car is required' })
+    @IsInt({ message: 'The parameter car must be a number' })
+    id_automovil: number;
 
-    @Expose({ name: 'brand' }) 
-    @IsDefined({ message: 'El parametro brand es obligatorio' })
-    @IsString({ message: 'El parametro brand debe ser una cadena' })
-    Marca: string;
+    @Expose({ name: 'marca' })
+    @IsDefined({ message: 'The parameter brand is required' })
+    @IsString({ message: 'The parameter brand must be a string' })
+    marca: string;
 
-    @Expose({ name: 'model' })
-    @IsDefined({ message: 'El parametro model es obligatorio' })
-    @IsString({ message: 'El parametro model debe ser una cadena' })
-    Modelo: string;
+    @Expose({ name: 'modelo' })
+    @IsDefined({ message: 'The parameter model is required' })
+    @IsString({ message: 'The parameter model must be a string' })
+    modelo: string;
 
-    @Expose({ name: 'year' })
-    @IsDefined({ message: 'El parametro year es obligatorio' })
-    @IsInt({ message: 'El parametro year debe ser un número' })
-    Anio: number;
+    @Expose({ name: 'anio' })
+    @IsDefined({ message: 'The parameter year is required' })
+    @IsInt({ message: 'The parameter year must be a number' })
+    anio: number;
 
-    @Expose({ name: 'tipe' })
-    @IsDefined({ message: 'El parametro tipe es obligatorio' })
-    @IsString({ message: 'El parametro tipe debe ser una cadena' })
-    Tipo: string;
+    @Expose({ name: 'tipo' })
+    @IsDefined({ message: 'The parameter tipe is required' })
+    @IsString({ message: 'The parameter tipe must be a string' })
+    tipo: string;
 
-    @Expose({ name: 'stalls' })
-    @IsDefined({ message: 'El parametro stalls es obligatorio' })
-    @IsInt({ message: 'El parametro stalls debe ser un número' })
-    Capacidad: number;
+    @Expose({ name: 'capacidad' })
+    @IsDefined({ message: 'The parameter capacidad is required' })
+    @IsInt({ message: 'The parameter capacidad must be a number' })
+    capacidad: number;
 
-    @Expose({ name: 'price' })
-    @IsDefined({ message: 'El parametro price es obligatorio' })
-    @IsInt({ message: 'El parametro price debe ser un número' })
-    Precio_Diario: number;
+    @Expose({ name: 'precio' })
+    @IsDefined({ message: 'The parameter precio is required' })
+    @IsInt({ message: 'The parameter precio must be a number' })
+    precio_diario: number;
 
     constructor(data: Partial<Automovil>) {
         Object.assign(this, data);
-        this.ID_Automovil = 0;
-        this.Marca = '';
-        this.Modelo = '';
-        this.Anio = 0;
-        this.Tipo = '';
-        this.Capacidad = 0;
-        this.Precio_Diario = 0;
+        this.id_automovil = 0;
+        this.marca = '';
+        this.modelo = '';
+        this.anio = 0;
+        this.tipo = '';
+        this.capacidad = 0;
+        this.precio_diario = 0;
     }
 }

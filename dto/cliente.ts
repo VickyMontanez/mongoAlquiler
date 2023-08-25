@@ -1,51 +1,61 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined } from 'class-validator';
+import { IsDefined, IsString, IsObject, ValidateIf, Matches } from 'class-validator';
+
 export class Cliente {
+    @Expose({ name: 'cliente' })
+    @IsDefined({ message: 'The parameter cliente is required' })
+    id_cliente: number;
 
-    @Expose({ name: 'client' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro client es obligatorio` } } })
-    ID_Cliente: number;
+    @Expose({ name: 'nombre' })
+    @IsDefined({ message: 'The parameter nombre is required' })
+    @IsString({ message: 'The parameter nombre must be a string' })
+    nombre: string;
 
-    @Expose({ name: 'name' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro name es obligatorio` } } })
-    Nombre: string;
+    @Expose({ name: 'apellido' })
+    @IsDefined({ message: 'The parameter apellido is required' })
+    @IsString({ message: 'The parameter apellido must be a string' })
+    apellido: string;
 
-    @Expose({ name: 'surname' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro surname es obligatorio` } } })
-    Apellido: string;
+    @Expose({ name: 'dni' })
+    @IsDefined({ message: 'The parameter DNI is required' })
+    @IsObject({ message: 'The parameter DNI must be an object' })
+    dni:{
+        @ValidateIf((obj, value) => value && value.cedula)
+        @Matches(/^[0-9]+$/, { message: 'The parameter cedula must be a numeric string' })
+        cedula?: string;
 
-    @Expose({ name: 'identification' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro identification es obligatorio` } } })
-    DNI: string;
+        @ValidateIf((obj, value) => value && value.pasaporte)
+        @Matches(/^[0-9]+$/, { message: 'The parameter pasaporte must be a numeric string' })
+        pasaporte?: string;
 
-    @Expose({ name: 'address' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro address es obligatorio` } } })
-    Direccion: string;
+        @ValidateIf((obj, value) => value && value.cedula_extranjeria)
+        @Matches(/^[0-9]+$/, { message: 'The parameter cedula_extranjeria must be a numeric string' })
+        cedula_extranjeria?: string;
+    };
 
-    @Expose({ name: 'phonenumber' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro phonenumber es obligatorio` } } })
-    Telefono: string;
+    @Expose({ name: 'direccion' })
+    @IsDefined({ message: 'The parameter direccion is required' })
+    @IsString({ message: 'The parameter direccion must be a string' })
+    direccion: string;
 
-    @Expose({ name: 'emailAddress' })
-    // @IsString({ message: () => { throw { status: 422, message: `El nombre_usuario no cumple con el formato, debe ser un string`}}})
-    @IsDefined({ message: () => { throw { status: 422, message: `El parametro emailAddress es obligatorio` } } })
-    Email: string;
+    @Expose({ name: 'telefono' })
+    @IsDefined({ message: 'The parameter telefono is required' })
+    @IsString({ message: 'The parameter telefono must be a string' })
+    telefono: string;
+
+    @Expose({ name: 'email' })
+    @IsDefined({ message: 'The parameter email is required' })
+    @IsString({ message: 'The parameter email must be a string' })
+    email: string;
 
     constructor(data: Partial<Cliente>) {
         Object.assign(this, data);
-        this.ID_Cliente = 0;
-        this.Nombre = "";
-        this.Apellido = "";
-        this.DNI = "";
-        this.Direccion = "";
-        this.Telefono = "";
-        this.Email = "";
-        
+        this.id_cliente = 0;
+        this.nombre = '';
+        this.apellido = '';
+        this.dni = {};
+        this.direccion = '';
+        this.telefono = '';
+        this.email = '';
     }
-};
+}
