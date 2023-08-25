@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { MongoClient } from 'mongodb';
 dotenv.config("../")
 
-export async function  coneccion() {
+export async function  conx() {
     try {
         const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@clusterdb.hicawdu.mongodb.net/${process.env.ATLAS_DB}`
         const options = {
