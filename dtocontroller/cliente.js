@@ -22,8 +22,8 @@ export class Cliente {
     }
 }
 __decorate([
-    Expose({ name: 'cliente' }),
-    IsDefined({ message: 'The parameter cliente is required' }),
+    Expose({ name: 'id_cliente' }),
+    IsDefined({ message: 'The parameter id_cliente is required' }),
     __metadata("design:type", Number)
 ], Cliente.prototype, "id_cliente", void 0);
 __decorate([
