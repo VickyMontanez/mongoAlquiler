@@ -12,54 +12,54 @@ import { Expose } from 'class-transformer';
 export class Automovil {
     constructor(data) {
         Object.assign(this, data);
-        this.ID_Automovil = 0;
-        this.Marca = '';
-        this.Modelo = '';
-        this.Anio = 0;
-        this.Tipo = '';
-        this.Capacidad = 0;
-        this.Precio_Diario = 0;
+        this.id_automovil = 0;
+        this.marca = '';
+        this.modelo = '';
+        this.anio = 0;
+        this.tipo = '';
+        this.capacidad = 0;
+        this.precio_diario = 0;
     }
 }
 __decorate([
-    Expose({ name: 'car' }),
-    IsDefined({ message: 'El parametro car es obligatorio' }),
-    IsInt({ message: 'El parametro car debe ser un número' }),
+    Expose({ name: 'automovil' }),
+    IsDefined({ message: 'The parameter car is required' }),
+    IsInt({ message: 'The parameter car must be a number' }),
     __metadata("design:type", Number)
-], Automovil.prototype, "ID_Automovil", void 0);
+], Automovil.prototype, "id_automovil", void 0);
 __decorate([
-    Expose({ name: 'brand' }),
-    IsDefined({ message: 'El parametro brand es obligatorio' }),
-    IsString({ message: 'El parametro brand debe ser una cadena' }),
+    Expose({ name: 'marca' }),
+    IsDefined({ message: 'The parameter brand is required' }),
+    IsString({ message: 'The parameter brand must be a string' }),
     __metadata("design:type", String)
-], Automovil.prototype, "Marca", void 0);
+], Automovil.prototype, "marca", void 0);
 __decorate([
-    Expose({ name: 'model' }),
-    IsDefined({ message: 'El parametro model es obligatorio' }),
-    IsString({ message: 'El parametro model debe ser una cadena' }),
+    Expose({ name: 'modelo' }),
+    IsDefined({ message: 'The parameter model is required' }),
+    IsString({ message: 'The parameter model must be a string' }),
     __metadata("design:type", String)
-], Automovil.prototype, "Modelo", void 0);
+], Automovil.prototype, "modelo", void 0);
 __decorate([
-    Expose({ name: 'year' }),
-    IsDefined({ message: 'El parametro year es obligatorio' }),
-    IsInt({ message: 'El parametro year debe ser un número' }),
+    Expose({ name: 'anio' }),
+    IsDefined({ message: 'The parameter year is required' }),
+    IsInt({ message: 'The parameter year must be a number' }),
     __metadata("design:type", Number)
-], Automovil.prototype, "Anio", void 0);
+], Automovil.prototype, "anio", void 0);
 __decorate([
-    Expose({ name: 'tipe' }),
-    IsDefined({ message: 'El parametro tipe es obligatorio' }),
-    IsString({ message: 'El parametro tipe debe ser una cadena' }),
+    Expose({ name: 'tipo' }),
+    IsDefined({ message: 'The parameter tipe is required' }),
+    IsString({ message: 'The parameter tipe must be a string' }),
     __metadata("design:type", String)
-], Automovil.prototype, "Tipo", void 0);
+], Automovil.prototype, "tipo", void 0);
 __decorate([
-    Expose({ name: 'stalls' }),
-    IsDefined({ message: 'El parametro stalls es obligatorio' }),
-    IsInt({ message: 'El parametro stalls debe ser un número' }),
+    Expose({ name: 'capacidad' }),
+    IsDefined({ message: 'The parameter capacidad is required' }),
+    IsInt({ message: 'The parameter capacidad must be a number' }),
     __metadata("design:type", Number)
-], Automovil.prototype, "Capacidad", void 0);
+], Automovil.prototype, "capacidad", void 0);
 __decorate([
-    Expose({ name: 'price' }),
-    IsDefined({ message: 'El parametro price es obligatorio' }),
-    IsInt({ message: 'El parametro price debe ser un número' }),
+    Expose({ name: 'precio' }),
+    IsDefined({ message: 'The parameter precio is required' }),
+    IsInt({ message: 'The parameter precio must be a number' }),
     __metadata("design:type", Number)
-], Automovil.prototype, "Precio_Diario", void 0);
+], Automovil.prototype, "precio_diario", void 0);
