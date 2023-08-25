@@ -8,68 +8,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose } from 'class-transformer';
-import { IsDefined, Matches, IsString } from 'class-validator';
-export class RegisDevo {
+import { IsDefined, Matches, IsString, IsInt } from 'class-validator';
+export class Devolucion {
     constructor(data) {
         Object.assign(this, data);
-        this.ID_Registro = 0;
-        this.ID_Alquiler_id = 0;
-        this.ID_Empleado_id = 0;
-        this.Fecha_Devolucion = "1991-01-01";
-        this.Combustible_Devuelto = 0;
-        this.Kilometraje_Devuelto = 0;
-        this.Monto_Adicional = 0;
+        this.id_registro = 0;
+        this.id_alquiler_id = 0;
+        this.id_empleado_id = 0;
+        this.fecha_devolucion = new Date();
+        this.combustible_devuelto = 0;
+        this.kilometraje_devuelto = 0;
+        this.monto_adicional = 0;
     }
 }
 __decorate([
-    Expose({ name: 'record' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro record es obligatorio` }; } }),
+    Expose({ name: 'id_registro' }),
+    IsInt({ message: 'The parameter id_registro must be a number' }),
+    IsDefined({ message: 'The parameter id_registro is required' }),
     __metadata("design:type", Number)
-], RegisDevo.prototype, "ID_Registro", void 0);
+], Devolucion.prototype, "id_registro", void 0);
 __decorate([
-    Expose({ name: 'renID' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro renID es obligatorio` }; } }),
+    Expose({ name: 'id_alquiler' }),
+    IsInt({ message: 'The parameter id_alquiler must be a number' }),
+    IsDefined({ message: 'The parameter id_alquiler is required' }),
     __metadata("design:type", Number)
-], RegisDevo.prototype, "ID_Alquiler_id", void 0);
+], Devolucion.prototype, "id_alquiler_id", void 0);
 __decorate([
-    Expose({ name: 'employees' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro employees es obligatorio` }; } }),
+    Expose({ name: 'id_empleado' }),
+    IsInt({ message: 'The parameter id_empleado must be a number' }),
+    IsDefined({ message: 'The parameter id_empleado is required' }),
     __metadata("design:type", Number)
-], RegisDevo.prototype, "ID_Empleado_id", void 0);
+], Devolucion.prototype, "id_empleado_id", void 0);
 __decorate([
-    Expose({ name: 'return_date' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsString({ message: 'El parametro return_date debe ser un string' }),
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro return_date es obligatorio` }; } }),
-    Matches(/^\d{4}-\d{2}-\d{2$}/, { message: 'Error' }),
-    __metadata("design:type", String)
-], RegisDevo.prototype, "Fecha_Devolucion", void 0);
+    Expose({ name: 'fechaDevolucion' }),
+    IsString({ message: 'The parameter fechaDevolucion must be a date' }),
+    IsDefined({ message: 'The parameter fechaDevolucion is required' }),
+    Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'Invalid format for fechaDevolucion' }),
+    __metadata("design:type", Date)
+], Devolucion.prototype, "fecha_devolucion", void 0);
 __decorate([
-    Expose({ name: 'fuel_returned' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro fuel_returned es obligatorio` }; } }),
+    Expose({ name: 'combustible_devuelto' }),
+    IsInt({ message: 'The parameter combustible_devuelto must be a number' }),
+    IsDefined({ message: 'The parameter combustible_devuelto is required' }),
     __metadata("design:type", Number)
-], RegisDevo.prototype, "Combustible_Devuelto", void 0);
+], Devolucion.prototype, "combustible_devuelto", void 0);
 __decorate([
-    Expose({ name: 'mileage_returned' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro mileage_returned es obligatorio` }; } }),
+    Expose({ name: 'kilometraje_devuelto' }),
+    IsInt({ message: 'The parameter kilometraje_devuelto must be a number' }),
+    IsDefined({ message: 'The parameter kilometraje_devuelto is required' }),
     __metadata("design:type", Number)
-], RegisDevo.prototype, "Kilometraje_Devuelto", void 0);
+], Devolucion.prototype, "kilometraje_devuelto", void 0);
 __decorate([
-    Expose({ name: 'additional_amount' })
-    // @IsNumber({}, { message: () => { throw { status: 422, message: `El cedula_usuario no cumple con el formato, debe ser un numero`}}})
-    ,
-    IsDefined({ message: () => { throw { status: 422, message: `El parametro additional_amount es obligatorio` }; } }),
+    Expose({ name: 'monto_adicional' }),
+    IsInt({ message: 'The parameter monto_adicional must be a number' }),
+    IsDefined({ message: 'The parameter monto_adicional is required' }),
     __metadata("design:type", Number)
-], RegisDevo.prototype, "Monto_Adicional", void 0);
+], Devolucion.prototype, "monto_adicional", void 0);
 ;
