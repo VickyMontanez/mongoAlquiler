@@ -7,6 +7,6 @@ const appcliente = express();
 appcliente.use(express.json());
 
 //1.Show all customers registered in the database.
-appcliente.get("/all", limitQuery(), appMiddlewareCliente, getClientes);
+appcliente.get("/all", limitQuery(), getClientes);
 
 export default appcliente;
