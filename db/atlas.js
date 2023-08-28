@@ -4,7 +4,7 @@ dotenv.config("../")
 
 export async function  conx() {
     try {
-        const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@clusterdb.hicawdu.mongodb.net/${process.env.ATLAS_DB}`
+        const uri = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PASSWORD}@atlascluster.3c0ouhb.mongodb.net/${process.env.ATLAS_DB}`
         const options = {
             useNewUrlParser: true,
             useUnifiedTopology: true,
